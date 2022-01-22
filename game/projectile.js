@@ -6,6 +6,8 @@ class projectile
         this.posy = posy;
         this.dir = dir;
 
+        this.used = false; // has already hit something
+
         this.gameobject = BABYLON.MeshBuilder.CreatePlane("projectile", {width:1, height:1}, scene);
         this.gameobject.position = new BABYLON.Vector3(posx, posy, 0);
 
@@ -19,7 +21,7 @@ class projectile
 
     update()
     {
-        var speed = 0.1;
+        var speed = 0.06;
         if(this.dir == 0)
             this.gameobject.position.y += speed;
         else if(this.dir == 1)

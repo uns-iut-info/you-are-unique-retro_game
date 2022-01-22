@@ -107,6 +107,8 @@ var createScene = function () {
 
     var projs = new Array();
 
+    var target = new mob(-4,4);
+
     var fireTimer = Date.now();
     var fireDelay = 200;
 
@@ -147,7 +149,17 @@ var createScene = function () {
             projs[i].gameobject.intersectsMesh(box3, false) ||
             projs[i].gameobject.intersectsMesh(box4, false))
                 projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Red();
+
+            if(!projs[i].used && !target.dead && projs[i].gameobject.intersectsMesh(target.gameobject, false))
+            {
+                projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
+                target.takeDamage(1);
+                projs[i].used = true;
+            }
+                
         }
+
+        
             
 
         sphere.moveWithCollisions(new BABYLON.Vector3(xdep, ydep, 0));
