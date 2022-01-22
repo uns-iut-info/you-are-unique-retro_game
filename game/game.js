@@ -7,7 +7,7 @@ var createScene = function () {
 
     // This creates and positions a free camera (non-mesh)
     var camera = new BABYLON.FollowCamera("followCam", new BABYLON.Vector3(0, 0, -30), scene);
-    camera.radius = 30;
+    camera.radius = 15;
     camera.heightOffset = 0;
     camera.rotationOffset = 180;
     camera.cameraAcceleration = 0.005;
@@ -16,13 +16,28 @@ var createScene = function () {
 
     camera.mode = camera.ORTHOGRAPHIC_CAMERA;
 
+    //set camera orthographic mode
     const rect   = engine.getRenderingCanvasClientRect();
     const aspect = rect.height / rect.width; 
 
-    camera.orthoLeft = -10;
-    camera.orthoRight = 10;
-    camera.orthoTop = 10 * aspect;
-    camera.orthoBottom = -10 * aspect;
+    camera.orthoLeft = -camera.radius;
+    camera.orthoRight = camera.radius;
+    camera.orthoTop = camera.radius * aspect;
+    camera.orthoBottom = -camera.radius * aspect;
+
+    //when resize windows its scale the game apropriately
+    const onResize = () => {
+        console.log("bruuu");
+        const rect   = engine.getRenderingCanvasClientRect();
+        const aspect = rect.height / rect.width; 
+    
+        camera.orthoLeft = -camera.radius;
+        camera.orthoRight = camera.radius;
+        camera.orthoTop = camera.radius * aspect;
+        camera.orthoBottom = -camera.radius * aspect;
+    }
+    window.addEventListener('resize', onResize);
+
 
     camera.maxCameraSpeed = 10;
 
@@ -107,11 +122,15 @@ var createScene = function () {
 
     // Our built-in 'ground' shape.
     var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
+
+    
     
     return scene;
 };
 
 var engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
+
+
 var scene = createScene();
 
    engine.runRenderLoop(function () {
