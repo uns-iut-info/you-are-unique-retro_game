@@ -1,4 +1,3 @@
-var canvas = document.getElementById("renderCanvas");
 var createScene = function () {
     // This creates a basic Babylon Scene object (non-mesh)
     var scene = new BABYLON.Scene(engine);
@@ -27,7 +26,6 @@ var createScene = function () {
 
     //when resize windows its scale the game apropriately
     const onResize = () => {
-        console.log("bruuu");
         const rect   = engine.getRenderingCanvasClientRect();
         const aspect = rect.height / rect.width; 
     
@@ -55,18 +53,9 @@ var createScene = function () {
     // Default intensity is 1. Let's dim the light a small amount
     //light.intensity = 0.7;
 
-    // Our built-in 'sphere' shape.
-    var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
-    sphere.checkCollisions = true;
-    sphere.isVisible=false;
-    var player = BABYLON.CreatePlane("player", {width:2, height:2}, scene);
-    player.position.z = -0.3;
+    createPlayer(); //initialize player related stuff
 
-    player.material = new BABYLON.StandardMaterial("noLight", scene);
-    player.material.disableLighting = true;
-    player.material.emissiveColor = BABYLON.Color3.White();
-    player.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/e/e5/Character_Isaac_appearance.png", scene);
-
+    // create wall room
     var box = BABYLON.MeshBuilder.CreateBox("Box", {size:2}, scene);
     box.position.x = -7;
     box.scaling.y = 6;
@@ -90,6 +79,8 @@ var createScene = function () {
     box4.scaling.x = 6;
     box4.checkCollisions = true;
     box4.isVisible = false;
+
+
     //-------- input --------
 
     var map = {};
@@ -105,42 +96,16 @@ var createScene = function () {
         map[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
     }));
 
-    var projs = new Array();
 
+    //add a test mob
     var target = new mob(-4,4);
 
-    var fireTimer = Date.now();
-    var fireDelay = 200;
-
+    //main loop
     scene.registerAfterRender(function(){
-        var xdep=0;
-        var ydep=0;
 
-        if(map["q"]) xdep = -0.1;
-        if(map["d"]) xdep = 0.1;
-        if(map["z"]) ydep = 0.1;
-        if(map["s"]) ydep = -0.1;
-        if(map["ArrowLeft"] && Date.now() > fireTimer)
-        {
-            projs.push(new projectile(sphere.position.x, sphere.position.y, 3));
-            fireTimer = Date.now() + fireDelay;
-        }
-        if(map["ArrowRight"] && Date.now() > fireTimer)
-        {
-            projs.push(new projectile(sphere.position.x, sphere.position.y, 1));
-            fireTimer = Date.now() + fireDelay;
-        }
-        if(map["ArrowUp"] && Date.now() > fireTimer)
-        {
-            projs.push(new projectile(sphere.position.x, sphere.position.y, 0));
-            fireTimer = Date.now() + fireDelay;
-        }
-        if(map["ArrowDown"] && Date.now() > fireTimer)
-        {
-            projs.push(new projectile(sphere.position.x, sphere.position.y, 2));
-            fireTimer = Date.now() + fireDelay;
-        }
+        updatePlayer(map);
 
+        //move this later in the player update function
         for(let i=0;i<projs.length;i++)
         {
             projs[i].update();
@@ -158,36 +123,10 @@ var createScene = function () {
             }
                 
         }
-
-        
-            
-
-        sphere.moveWithCollisions(new BABYLON.Vector3(xdep, ydep, 0));
-        player.position = sphere.position;
     })
 
+    //look at room center
     camera.lockedTarget = background;
-
-    // Our built-in 'ground' shape.
-    var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
-
-    
     
     return scene;
 };
-
-var engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
-
-
-var scene = createScene();
-
-   engine.runRenderLoop(function () {
-	if (scene) {
-		scene.render();
-	}
-});
-
-// Resize
-window.addEventListener("resize", function () {
-	engine.resize();
-});

@@ -42,6 +42,23 @@
     <canvas id="renderCanvas"></canvas>
     <script src="projectile.js"></script>
     <script src="mob.js"></script>
+    <script src="player.js"></script>
     <script src="./game.js"></script>
+
+    <script>
+        var canvas = document.getElementById("renderCanvas");
+        var engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
+
+        var scene = createScene();
+
+        engine.runRenderLoop(function () {
+            if (scene) scene.render();
+        });
+
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+    </script>
 </body>
 </html>
