@@ -105,6 +105,11 @@ var createScene = function () {
         map[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
     }));
 
+    var projs = new Array();
+
+    var fireTimer = Date.now();
+    var fireDelay = 200;
+
     scene.registerAfterRender(function(){
         var xdep=0;
         var ydep=0;
@@ -113,6 +118,37 @@ var createScene = function () {
         if(map["d"]) xdep = 0.1;
         if(map["z"]) ydep = 0.1;
         if(map["s"]) ydep = -0.1;
+        if(map["ArrowLeft"] && Date.now() > fireTimer)
+        {
+            projs.push(new projectile(sphere.position.x, sphere.position.y, 3));
+            fireTimer = Date.now() + fireDelay;
+        }
+        if(map["ArrowRight"] && Date.now() > fireTimer)
+        {
+            projs.push(new projectile(sphere.position.x, sphere.position.y, 1));
+            fireTimer = Date.now() + fireDelay;
+        }
+        if(map["ArrowUp"] && Date.now() > fireTimer)
+        {
+            projs.push(new projectile(sphere.position.x, sphere.position.y, 0));
+            fireTimer = Date.now() + fireDelay;
+        }
+        if(map["ArrowDown"] && Date.now() > fireTimer)
+        {
+            projs.push(new projectile(sphere.position.x, sphere.position.y, 2));
+            fireTimer = Date.now() + fireDelay;
+        }
+
+        for(let i=0;i<projs.length;i++)
+        {
+            projs[i].update();
+            if(projs[i].gameobject.intersectsMesh(box, false) ||
+            projs[i].gameobject.intersectsMesh(box2, false) ||
+            projs[i].gameobject.intersectsMesh(box3, false) ||
+            projs[i].gameobject.intersectsMesh(box4, false))
+                projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Red();
+        }
+            
 
         sphere.moveWithCollisions(new BABYLON.Vector3(xdep, ydep, 0));
         player.position = sphere.position;
