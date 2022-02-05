@@ -1,9 +1,11 @@
 
 var width;
 var height;
-var selectedBlock;
+var selectedBlock=0;
+var selectedEntity=0;
 
 var block = ["empty.png", "bricks.png", "ground.png"];
+var entity = ["empty.png", "fall.png"];
 var spawn = "resources/editor/spawn.png";
 var exit = "resources/editor/exit.png";
 var poro = "resources/editor/poro_editor.png";
@@ -16,10 +18,10 @@ for(var i = 0; i < block.length;i++)
     imgDiv.innerHTML += "<img src='"+block[i]+"' width='64' height='64' onclick=selectBlock('"+i+"')>";
 }
 
-imgDiv.innerHTML += "<br><img src='"+spawn+"' width='64' height='64' onclick=selectBlock('x')>";
-imgDiv.innerHTML += "<img src='"+exit+"' width='64' height='64' onclick=selectBlock('e')>";
-imgDiv.innerHTML += "<img src='"+poro+"' width='64' height='64' onclick=selectBlock('p')>";
-imgDiv.innerHTML += "<img src='"+poroVolant+"' width='64' height='64' onclick=selectBlock('v')>";
+imgDiv.innerHTML += "<br>";
+
+for(var i = 0; i < entity.length; i++)
+    imgDiv.innerHTML += "<img src='"+entity[i]+"' width='64' height='64' onclick=selectEntity('"+i+"')>";
 
 var selectInfoTxt = document.getElementById("selectionInfo");
 
@@ -39,8 +41,22 @@ function generate()
         for(var x = 0; x < width; x++)
         {
             var id = x + "-" + y;
-            var onclick = "updateBlock('"+ id+ "')";
+            var onclick = "updateBlock('"+ id+ "');updateEntity('"+id+"')";
             htmlTab += "<td id="+ id + " onclick=" + onclick +"><img id='img"+id+"' src='"+block[0]+"' width='64' height='64'></td>";
+        }
+        htmlTab += "</tr>";
+    }
+
+    htmlTab += "</table><br><br><table>";
+
+    for(var y = 0;y<height;y++)
+    {
+        htmlTab += "<tr>";
+        for(var x = 0; x < width; x++)
+        {
+            var id = x + "-" + y;
+            var onclick = "updateEntity('"+ id+ "')";
+            htmlTab += "<td id=e"+ id + " onclick=" + onclick +"><img id='eimg"+id+"' src='"+entity[0]+"' width='64' height='64'></td>";
         }
         htmlTab += "</tr>";
     }
@@ -58,6 +74,11 @@ function selectBlock(select)
     selectInfoTxt.innerHTML = "selected block " + select; 
 }
 
+function selectEntity(select)
+{
+    selectedEntity = select;
+}
+
 function updateBlock(id)
 {
     var index = block[selectedBlock];
@@ -72,8 +93,15 @@ function updateBlock(id)
     document.getElementById(id).innerHTML = "<img id='img"+id+"' src='"+ index +"' width='64' height='64'>";
 }
 
+function updateEntity(id)
+{
+    var index = entity[selectedEntity];
+    document.getElementById("e"+id).innerHTML = "<img id='eimg"+id+"' src='"+ index +"' width='64' height='64'>";
+}
+
 function convertMap()
 {
+    var layer1 = "layer1: \"";
     var output= "{";
     output += " width: " + width;
     output += ", height: " + height;
@@ -103,10 +131,18 @@ function convertMap()
                     }
                 }
             }
+
+            var imgsrc = document.getElementById("eimg"+x+"-"+y).src;
+
+            for(var i=0; i<entity.length;i++)
+            {
+                if(imgsrc.includes(entity[i]))
+                    layer1  += i + " "; 
+            }
         }
     }
 
-    output += "\", layer1:\"\" }";
+    output += "\", " + layer1 + "\"}";
 
     console.log(output);
     var out = document.getElementById("output");
