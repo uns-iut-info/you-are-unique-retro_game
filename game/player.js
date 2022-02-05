@@ -1,4 +1,3 @@
-var sphere;
 var player;
 
 var projs = new Array();
@@ -8,18 +7,14 @@ var fireDelay = 200;
 
 function createPlayer()
 {
-    sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
-    sphere.checkCollisions = true;
-    sphere.isVisible=false;
-
-    player = BABYLON.CreatePlane("player", {width:2, height:2}, scene);
+    player = BABYLON.CreatePlane("player", {width:1, height:1}, scene);
+    player.ellipsoid = new BABYLON.Vector3(0.5,0.5,0.5);
     player.position.z = -0.3;
 
     player.material = new BABYLON.StandardMaterial("noLight", scene);
     player.material.disableLighting = true;
     player.material.emissiveColor = BABYLON.Color3.White();
     player.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/e/e5/Character_Isaac_appearance.png", scene);
-
 }
 
 function updatePlayer(map)
@@ -33,29 +28,28 @@ function updatePlayer(map)
     if(map["z"]) ydep = 0.1;
     if(map["s"]) ydep = -0.1;
 
-    sphere.moveWithCollisions(new BABYLON.Vector3(xdep, ydep, 0));
-    player.position = sphere.position;
+    player.moveWithCollisions(new BABYLON.Vector3(xdep, ydep, 0));
 
 
     //shooting
     if(map["ArrowLeft"] && Date.now() > fireTimer)
     {
-        projs.push(new projectile(sphere.position.x, sphere.position.y, 3));
+        projs.push(new projectile(player.position.x, player.position.y, 3));
         fireTimer = Date.now() + fireDelay;
     }
     if(map["ArrowRight"] && Date.now() > fireTimer)
     {
-        projs.push(new projectile(sphere.position.x, sphere.position.y, 1));
+        projs.push(new projectile(player.position.x, player.position.y, 1));
         fireTimer = Date.now() + fireDelay;
     }
     if(map["ArrowUp"] && Date.now() > fireTimer)
     {
-        projs.push(new projectile(sphere.position.x, sphere.position.y, 0));
+        projs.push(new projectile(player.position.x, player.position.y, 0));
         fireTimer = Date.now() + fireDelay;
     }
     if(map["ArrowDown"] && Date.now() > fireTimer)
     {
-        projs.push(new projectile(sphere.position.x, sphere.position.y, 2));
+        projs.push(new projectile(player.position.x, player.position.y, 2));
         fireTimer = Date.now() + fireDelay;
     }
 }

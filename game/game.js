@@ -127,6 +127,8 @@ var createScene = function () {
 
     //look at room center
     camera.lockedTarget = background;
+
+    loadTest(scene);
     
     return scene;
 };
