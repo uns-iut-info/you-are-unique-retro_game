@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+
+  <title>Game Editor</title>
+
+  <link rel="stylesheet" href="editor.css">
+
+</head>
+
+<body>
+  
+  <h1>Level Editor</h1>
+
+  <div id="editor_option">
+    <label>Width</label>
+    <input id="map_width" value="10"><br><br>
+    <label>Height</label>
+    <input id="map_height" value="10"><br><br>
+
+    <button onclick="generate()">Generate grid</button><br><br>
+
+    <label>Import map</label>
+    <input id="maploader"><br><br>
+    <button onclick="loadMap()">Load map</button><br><br>
+
+    <div id="palette"></div>
+
+    <p id="selectionInfo">selected block 0</p>
+    
+  </div>
+
+    <div id="tab"></div>
+
+    <br><br>
+
+    <div id="div_output">
+      <button id="converterButton" onclick="convertMap()" hidden=true>Generate map text</button>
+      <p id="hide">Copied to clipboard !</p>
+      <br><br>
+      <textarea id="output" rows="10" cols="100" hidden=true></textarea>
+    </div>
+    
+
+  <script src="escript.js"></script>
+</body>
+</html>
