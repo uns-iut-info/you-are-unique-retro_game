@@ -5,7 +5,7 @@ var selectedBlock=0;
 var selectedEntity=0;
 
 var block = ["empty.png", "bricks.png", "ground.png"];
-var entity = ["empty.png", "fall.png"];
+var entity = ["empty.png", "fall.png", "rock.png", "door.png", "wall_entity.png"];
 var spawn = "resources/editor/spawn.png";
 var exit = "resources/editor/exit.png";
 var poro = "resources/editor/poro_editor.png";

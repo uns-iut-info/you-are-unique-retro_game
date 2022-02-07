@@ -1,12 +1,11 @@
 var l = 
-{
-    width:8,
-    height:6,
-    layer0: "1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 1 1 2 2 2 2 2 2 1 1 2 2 2 2 2 2 1 1 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1",
-    layer1: "0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 d d 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 0 0 1 1"
-}
-// { width: 8, height: 6, layer0: "0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 1 2 2 2 2 2 1 0 0 0 0 0 2 1 1 0 1 2 2 2 2 2 1 0 1 1 1 1 1 1 1 ", layer1:"" }
-
+// {
+//     width:8,
+//     height:6,
+//     layer0: "1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 1 1 2 2 2 2 2 2 1 1 2 2 2 2 2 2 1 1 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1",
+//     layer1: "0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 d d 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 0 0 1 1"
+// }
+{ width: 10, height: 10, layer0: "0 0 1 1 1 1 1 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 ", layer1: "0 0 4 4 4 4 4 4 0 0 0 0 4 2 0 0 0 4 0 0 0 0 3 0 0 0 1 4 0 0 0 0 4 1 2 0 1 4 0 0 0 0 4 0 0 0 1 4 0 0 0 0 4 1 2 0 1 4 0 0 0 0 4 1 0 0 1 4 0 0 0 0 4 2 0 0 0 3 0 0 0 0 4 4 4 4 4 4 0 0 0 0 0 0 0 0 0 0 0 0 "}
 function loadlevel(level, scene)
 {
     var level_tab = level["layer0"].split(' ');
@@ -19,7 +18,7 @@ function loadlevel(level, scene)
 
     var blockList = initTiles(scene);
 
-    var entitiesList
+    //var entitiesList
     var fall = buildTile(scene, 2);
     fall.checkCollisions = true;
     var blockingBox = BABYLON.MeshBuilder.CreateBox("b", {size:0}, scene);
@@ -27,6 +26,9 @@ function loadlevel(level, scene)
 
     var rock = buildTile(scene, 3);
     rock.checkCollisions = true;
+
+    var door = buildTile(scene, 4);
+    door.checkCollisions = true;
 
     // first layer
     for(let h = 0; h < level_h; h++)
@@ -65,7 +67,21 @@ function loadlevel(level, scene)
                 i.isVisible = false;
             }
             if(tile == "2")
+            {
                 instantiateTile(rock, pos);
+                var i = instantiateTile(blockingBox, pos);
+                i.checkCollisions = true;
+                i.isVisible = false;
+            }
+                
+            if(tile == "3")
+                instantiateTile(door, pos);
+            if(tile == "4") //boxwall
+            {
+                var i = instantiateTile(blockingBox, pos);
+                i.checkCollisions = true;
+                i.isVisible = false;
+            }
         }
     }
 }
