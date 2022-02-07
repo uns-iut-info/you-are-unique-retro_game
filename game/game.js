@@ -109,11 +109,13 @@ var createScene = function () {
         for(let i=0;i<projs.length;i++)
         {
             projs[i].update();
-            if(projs[i].gameobject.intersectsMesh(box, false) ||
-            projs[i].gameobject.intersectsMesh(box2, false) ||
-            projs[i].gameobject.intersectsMesh(box3, false) ||
-            projs[i].gameobject.intersectsMesh(box4, false))
-                projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Red();
+
+            //check projectiles collisions with walls
+            for(let j=0;j<walls.length;j++)
+            {
+                if(projs[i].gameobject.intersectsMesh(walls[j], false))
+                    projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Red();    
+            }
 
             if(!projs[i].used && !target.dead && projs[i].gameobject.intersectsMesh(target.gameobject, false))
             {

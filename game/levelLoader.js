@@ -14,17 +14,15 @@ var originalEntityFall;
 var originalEntityRock;
 var originalEntityDoor;
 var originalBoxCollider;
-var atlas;
-var tileMaterial;
 
 //init original prefabs
 function initLevelLoader(scene)
 {
     //first load the atlas texture
-    atlas = new BABYLON.Texture("atlas.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    var atlas = new BABYLON.Texture("atlas.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
 
     //define default material for tiles
-    tileMaterial = new BABYLON.StandardMaterial("noLight", scene);
+    var tileMaterial = new BABYLON.StandardMaterial("noLight", scene);
     tileMaterial.disableLighting = true;
     tileMaterial.emissiveColor = BABYLON.Color3.White();
     tileMaterial.diffuseTexture = atlas;
@@ -53,7 +51,7 @@ function initLevelLoader(scene)
     }
 }
 
-
+var walls = Array();
 
 function loadlevel(level)
 {
@@ -67,6 +65,7 @@ function loadlevel(level)
 
     var backgroundTiles = Array();
     var entities = Array();
+    walls = Array();
 
     // first layer
     for(let h = 0; h < level_h; h++)
@@ -106,7 +105,7 @@ function loadlevel(level)
             if(tile == "3")
                 entities.push(instantiateTile(originalEntityDoor, pos));
             if(tile == "4") //boxwall
-                entities.push(instantiateBlock(pos));
+                walls.push(instantiateBlock(pos));
         }
     }
 }

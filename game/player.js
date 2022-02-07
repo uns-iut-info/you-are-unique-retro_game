@@ -15,6 +15,7 @@ function createPlayer()
     player.material.disableLighting = true;
     player.material.emissiveColor = BABYLON.Color3.White();
     player.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/e/e5/Character_Isaac_appearance.png", scene);
+    player.material.diffuseTexture.hasAlpha = true;
 }
 
 function updatePlayer(map)

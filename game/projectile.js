@@ -1,5 +1,6 @@
 class projectile
 {
+    //optimise...
     constructor(posx, posy, dir)
     {
         this.posx = posx;
@@ -9,12 +10,13 @@ class projectile
         this.used = false; // has already hit something
 
         this.gameobject = BABYLON.MeshBuilder.CreatePlane("projectile", {width:1, height:1}, scene);
-        this.gameobject.position = new BABYLON.Vector3(posx, posy, 0);
+        this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.3);
 
         var newmat = new BABYLON.StandardMaterial("noLight", scene);
         newmat.disableLighting = true;
         newmat.emissiveColor = BABYLON.Color3.White();
         newmat.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/3b/Fire_Charge_JE2_BE2.png", scene);
+        newmat.diffuseTexture.hasAlpha = true;
 
         this.gameobject.material = newmat;
     }
