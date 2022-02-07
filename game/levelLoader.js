@@ -6,7 +6,56 @@ var l =
 //     layer1: "0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 d d 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 0 0 1 1"
 // }
 { width: 10, height: 10, layer0: "0 0 1 1 1 1 1 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 2 2 2 2 1 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 ", layer1: "0 0 4 4 4 4 4 4 0 0 0 0 4 2 0 0 0 4 0 0 0 0 3 0 0 0 1 4 0 0 0 0 4 1 2 0 1 4 0 0 0 0 4 0 0 0 1 4 0 0 0 0 4 1 2 0 1 4 0 0 0 0 4 1 0 0 1 4 0 0 0 0 4 2 0 0 0 3 0 0 0 0 4 4 4 4 4 4 0 0 0 0 0 0 0 0 0 0 0 0 "}
-function loadlevel(level, scene)
+
+//original objects for level
+var originalBlockList = Array(); // for the background layer
+
+var originalEntityFall;
+var originalEntityRock;
+var originalEntityDoor;
+var originalBoxCollider;
+var atlas;
+var tileMaterial;
+
+//init original prefabs
+function initLevelLoader(scene)
+{
+    //first load the atlas texture
+    atlas = new BABYLON.Texture("atlas.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+
+    //define default material for tiles
+    tileMaterial = new BABYLON.StandardMaterial("noLight", scene);
+    tileMaterial.disableLighting = true;
+    tileMaterial.emissiveColor = BABYLON.Color3.White();
+    tileMaterial.diffuseTexture = atlas;
+    tileMaterial.diffuseTexture.hasAlpha = true;
+
+    //tiles
+    for(let i=0; i<3; i++)
+        originalBlockList.push(CreateTile(scene, i));
+
+    originalEntityFall = CreateTile(scene, 2);
+    originalEntityRock = CreateTile(scene, 3);
+    originalEntityDoor = CreateTile(scene, 4);
+
+    originalBoxCollider = BABYLON.MeshBuilder.CreateBox("b", {size:0}, scene);
+    originalBoxCollider.isVisible = false;
+
+    function CreateTile(scene, textureIndex)
+    {
+        var faceUV = new BABYLON.Vector4(textureIndex/8, 0, (textureIndex+1)/8, 1/6);
+
+        var tile = BABYLON.MeshBuilder.CreatePlane("tile", {frontUVs:faceUV, width:1, height:1, sideOrientation:BABYLON.Mesh.DOUBLESIDE}, scene);
+        tile.material = tileMaterial;
+        tile.position = new BABYLON.Vector3(0, -100, 0);
+
+        return tile;
+    }
+}
+
+
+
+function loadlevel(level)
 {
     var level_tab = level["layer0"].split(' ');
 
@@ -16,19 +65,8 @@ function loadlevel(level, scene)
     var x_offset = level.width/2;
     var y_offset = level.height/2;
 
-    var blockList = initTiles(scene);
-
-    //var entitiesList
-    var fall = buildTile(scene, 2);
-    fall.checkCollisions = true;
-    var blockingBox = BABYLON.MeshBuilder.CreateBox("b", {size:0}, scene);
-    blockingBox.isVisible = false;
-
-    var rock = buildTile(scene, 3);
-    rock.checkCollisions = true;
-
-    var door = buildTile(scene, 4);
-    door.checkCollisions = true;
+    var backgroundTiles = Array();
+    var entities = Array();
 
     // first layer
     for(let h = 0; h < level_h; h++)
@@ -38,14 +76,9 @@ function loadlevel(level, scene)
             var tile = level_tab[w + h*level_w];
             var pos = new BABYLON.Vector3(w - x_offset, (level_h - h) - y_offset, 0);
             if(tile == "1")
-            {
-                instantiateTile(blockList[0], pos);
-                
-            }
+                backgroundTiles.push(instantiateTile(originalBlockList[0], pos));
             if(tile == "2")
-            {
-                instantiateTile(blockList[1], pos);
-            }
+                backgroundTiles.push(instantiateTile(originalBlockList[1], pos));
         }
     }
 
@@ -61,57 +94,24 @@ function loadlevel(level, scene)
 
             if(tile == "1")
             {
-                instantiateTile(fall, pos);
-                var i = instantiateTile(blockingBox, pos);
-                i.checkCollisions = true;
-                i.isVisible = false;
+                entities.push(instantiateTile(originalEntityFall, pos));
+                entities.push(instantiateBlock(pos));
             }
             if(tile == "2")
             {
-                instantiateTile(rock, pos);
-                var i = instantiateTile(blockingBox, pos);
-                i.checkCollisions = true;
-                i.isVisible = false;
+                entities.push(instantiateTile(originalEntityRock, pos));
+                entities.push(instantiateBlock(pos));
             }
                 
             if(tile == "3")
-                instantiateTile(door, pos);
+                entities.push(instantiateTile(originalEntityDoor, pos));
             if(tile == "4") //boxwall
-            {
-                var i = instantiateTile(blockingBox, pos);
-                i.checkCollisions = true;
-                i.isVisible = false;
-            }
+                entities.push(instantiateBlock(pos));
         }
     }
 }
 
-function buildTile(scene, textureIndex)
-{
-    var faceUV = new BABYLON.Vector4(textureIndex/8, 0, (textureIndex+1)/8, 1/6);
-
-    var tile = BABYLON.MeshBuilder.CreatePlane("tile", {frontUVs:faceUV, width:1, height:1, sideOrientation:BABYLON.Mesh.DOUBLESIDE}, scene);
-    var mat = new BABYLON.StandardMaterial("noLight", scene);
-    mat.disableLighting = true;
-    mat.emissiveColor = BABYLON.Color3.White();
-    var atlas = new BABYLON.Texture("atlas.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    mat.diffuseTexture = atlas;
-    mat.diffuseTexture.hasAlpha = true;
-    tile.material = mat;
-    tile.position = new BABYLON.Vector3(0, -100, 0);
-
-    return tile;
-}
-
-function initTiles(scene)
-{
-    var blockList = Array();
-
-    for(let i=0; i<3; i++)
-        blockList.push(buildTile(scene, i));
-
-    return blockList;
-}
+// --- instances function ---
 
 function instantiateTile(tile, position)
 {
@@ -121,7 +121,11 @@ function instantiateTile(tile, position)
     return instance;
 }
 
-function loadTest(scene)
+function instantiateBlock(position)
 {
-    loadlevel(l, scene);
+    var instance = instantiateTile(originalBoxCollider, position);
+    instance.checkCollisions = true;
+    instance.isVisible = false;
+
+    return instance;
 }
