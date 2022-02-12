@@ -104,6 +104,7 @@ var createScene = function () {
     scene.registerAfterRender(function(){
 
         updatePlayer(map);
+        target.update(player);
 
         //move this later in the player update function
         for(let i=0;i<projs.length;i++)
@@ -113,15 +114,16 @@ var createScene = function () {
             //check projectiles collisions with walls
             for(let j=0;j<walls.length;j++)
             {
-                if(projs[i].gameobject.intersectsMesh(walls[j], false))
+                if(projs[i].boxCollider.intersectsMesh(walls[j], false))
                     projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Red();    
             }
 
-            if(!projs[i].used && !target.dead && projs[i].gameobject.intersectsMesh(target.gameobject, false))
+            if(!projs[i].used && !target.dead && projs[i].boxCollider.intersectsMesh(target.gameobject, false))
             {
                 projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
                 target.takeDamage(1);
                 projs[i].used = true;
+                console.log("hit");
             }
                 
         }

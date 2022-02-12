@@ -11,6 +11,9 @@ class projectile
 
         this.gameobject = BABYLON.MeshBuilder.CreatePlane("projectile", {width:1, height:1}, scene);
         this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.3);
+        this.boxCollider = BABYLON.MeshBuilder.CreateBox("box", {size:1},scene); // rendre la box statique pour en avoir une pour tous
+        this.boxCollider.position = this.gameobject.position;
+        this.boxCollider.isVisible = false;
 
         var newmat = new BABYLON.StandardMaterial("noLight", scene);
         newmat.disableLighting = true;
@@ -32,5 +35,7 @@ class projectile
             this.gameobject.position.y -= speed;
         else if(this.dir == 3)
             this.gameobject.position.x -= speed;
+
+        this.boxCollider.position = this.gameobject.position;
     }
 }
