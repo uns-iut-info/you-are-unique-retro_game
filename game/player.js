@@ -28,27 +28,30 @@ function updatePlayer(map)
     if(map["d"]) xdep = 0.1;
     if(map["z"]) ydep = 0.1;
     if(map["s"]) ydep = -0.1;
+    if(map["vertical"]) ydep += -map["vertical"]/10;
+    if(map["horizontal"]) xdep += map["horizontal"]/10;
+
 
     player.moveWithCollisions(new BABYLON.Vector3(xdep, ydep, 0));
 
 
     //shooting
-    if(map["ArrowLeft"] && Date.now() > fireTimer)
+    if((map["ArrowLeft"] || map["left_shooting"]) && Date.now() > fireTimer)
     {
         projs.push(new projectile(player.position.x, player.position.y, 3));
         fireTimer = Date.now() + fireDelay;
     }
-    if(map["ArrowRight"] && Date.now() > fireTimer)
+    if((map["ArrowRight"] || map["right_shooting"]) && Date.now() > fireTimer)
     {
         projs.push(new projectile(player.position.x, player.position.y, 1));
         fireTimer = Date.now() + fireDelay;
     }
-    if(map["ArrowUp"] && Date.now() > fireTimer)
+    if((map["ArrowUp"] || map["top_shooting"]) && Date.now() > fireTimer)
     {
         projs.push(new projectile(player.position.x, player.position.y, 0));
         fireTimer = Date.now() + fireDelay;
     }
-    if(map["ArrowDown"] && Date.now() > fireTimer)
+    if((map["ArrowDown"] || map["bottom_shooting"]) && Date.now() > fireTimer)
     {
         projs.push(new projectile(player.position.x, player.position.y, 2));
         fireTimer = Date.now() + fireDelay;

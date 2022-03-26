@@ -47,6 +47,7 @@ var createScene = function () {
     background.material.disableLighting = true;
     background.material.emissiveColor = BABYLON.Color3.White();
     background.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaac_fr_gamepedia/images/7/71/Basement.png", scene);
+     
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
     //var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
@@ -81,6 +82,31 @@ var createScene = function () {
     box4.isVisible = false;
 
 
+    //-------- GUI --------
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(background);
+
+    var grid = new BABYLON.GUI.Grid();
+    grid.addColumnDefinition("100px", true);
+    grid.addColumnDefinition("100px", true);
+    grid.addColumnDefinition("300px", true);
+    grid.top = "-450px";
+    grid.left = "250px";
+    advancedTexture.addControl(grid);
+
+    var image1 = new BABYLON.GUI.Image("heart1", "heart.png");
+    image1.width = "100px";
+    image1.height = "100px";
+    var image2 = new BABYLON.GUI.Image("heart2", "heart.png");
+    image2.width = "100px";
+    image2.height = "100px";
+    var image3 = new BABYLON.GUI.Image("heart3", "heart.png");
+    image3.width = "100px";
+    image3.height = "100px";
+    grid.addControl(image1, 0, 0);
+    grid.addControl(image2, 0, 1);
+    grid.addControl(image3, 0, 2);
+    //grid.removeControl(image3); //Remove last Heart
+
     //-------- input --------
 
     var map = {};
@@ -96,15 +122,47 @@ var createScene = function () {
         map[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
     }));
 
+        // gamepad 
+    var SEUIL_DETECTION = 0.5;
+    scene.gamepadManager = new BABYLON.GamepadManager();
+    scene.gamepadManager.onGamepadConnectedObservable.add((gamepad, state)=>{
+        console.log("manette co");
+
+        gamepad.onButtonDownObservable.add((button, state)=>{
+            //Button has been pressed
+            console.log(button);
+            console.log(state);
+        })
+        gamepad.onleftstickchanged((values)=>{
+            map["horizontal"] = (Math.abs(values.x)>SEUIL_DETECTION) ? values.x : 0;
+            map["vertical"] = (Math.abs(values.y)>SEUIL_DETECTION) ? values.y : 0;
+        })
+        gamepad.onrightstickchanged((values)=>{
+            map["right_shooting"] = (values.x>0.5)? values.x : 0;
+            map["left_shooting"] = (values.x<-0.5)? -values.x : 0;
+            map["bottom_shooting"] = (values.y>0.5)? values.y : 0;
+            map["top_shooting"] = (values.y<-0.5)? -values.y : 0;
+        })
+    });
+    scene.gamepadManager.onGamepadDisconnectedObservable.add((gamepad, state)=>{
+        console.log("manette deco");
+    });
+
+
 
     //add a test mob
-    var target = new mob(-4,4);
+    var targets = Array();
+    targets.push(new mob(-4,4));
+    targets.push(new blob(4,-4));
 
     //main loop
     scene.registerAfterRender(function(){
 
         updatePlayer(map);
-        target.update(player);
+        for (let target of targets){
+            target.update(player);
+        }
+
 
         //move this later in the player update function
         for(let i=0;i<projs.length;i++)
@@ -117,15 +175,16 @@ var createScene = function () {
                 if(projs[i].boxCollider.intersectsMesh(walls[j], false))
                     projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Red();    
             }
-
-            if(!projs[i].used && !target.dead && projs[i].boxCollider.intersectsMesh(target.gameobject, false))
-            {
-                projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
-                target.takeDamage(1);
-                projs[i].used = true;
-                console.log("hit");
+            for (let target of targets){
+                if(!projs[i].used && !target.dead && projs[i].boxCollider.intersectsMesh(target.gameobject, false))
+                {
+                    projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
+                    target.takeDamage(1);
+                    projs[i].used = true;
+                    console.log("hit");
+                }
             }
-                
+    
         }
     })
 
