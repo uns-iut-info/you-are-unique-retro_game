@@ -81,6 +81,31 @@ var createScene = function () {
     box4.isVisible = false;
 
 
+    //-------- GUI --------
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(background);
+
+    var grid = new BABYLON.GUI.Grid();
+    grid.addColumnDefinition("100px", true);
+    grid.addColumnDefinition("100px", true);
+    grid.addColumnDefinition("300px", true);
+    grid.top = "-450px";
+    grid.left = "250px";
+    advancedTexture.addControl(grid);
+
+    var image1 = new BABYLON.GUI.Image("heart1", "heart.png");
+    image1.width = "100px";
+    image1.height = "100px";
+    var image2 = new BABYLON.GUI.Image("heart2", "heart.png");
+    image2.width = "100px";
+    image2.height = "100px";
+    var image3 = new BABYLON.GUI.Image("heart3", "heart.png");
+    image3.width = "100px";
+    image3.height = "100px";
+    grid.addControl(image1, 0, 0);
+    grid.addControl(image2, 0, 1);
+    grid.addControl(image3, 0, 2);
+    //grid.removeControl(image3); //Remove last Heart
+
     //-------- input --------
 
     var map = {};
