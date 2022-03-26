@@ -47,6 +47,7 @@ var createScene = function () {
     background.material.disableLighting = true;
     background.material.emissiveColor = BABYLON.Color3.White();
     background.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaac_fr_gamepedia/images/7/71/Basement.png", scene);
+     
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
     //var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
@@ -125,13 +126,18 @@ var createScene = function () {
 
 
     //add a test mob
-    var target = new mob(-4,4);
+    var targets = Array();
+    targets.push(new mob(-4,4));
+    targets.push(new blob(4,-4));
 
     //main loop
     scene.registerAfterRender(function(){
 
         updatePlayer(map);
-        target.update(player);
+        for (let target of targets){
+            target.update(player);
+        }
+
 
         //move this later in the player update function
         for(let i=0;i<projs.length;i++)
@@ -144,15 +150,16 @@ var createScene = function () {
                 if(projs[i].boxCollider.intersectsMesh(walls[j], false))
                     projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Red();    
             }
-
-            if(!projs[i].used && !target.dead && projs[i].boxCollider.intersectsMesh(target.gameobject, false))
-            {
-                projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
-                target.takeDamage(1);
-                projs[i].used = true;
-                console.log("hit");
+            for (let target of targets){
+                if(!projs[i].used && !target.dead && projs[i].boxCollider.intersectsMesh(target.gameobject, false))
+                {
+                    projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
+                    target.takeDamage(1);
+                    projs[i].used = true;
+                    console.log("hit");
+                }
             }
-                
+    
         }
     })
 
