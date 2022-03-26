@@ -83,7 +83,10 @@ var createScene = function () {
 
 
     //-------- GUI --------
-    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(background);
+    var planeGUI = BABYLON.MeshBuilder.CreatePlane("planeGUI", {size:10}, scene);
+    planeGUI.position.y = 1.5;
+    planeGUI.position.x = -1;
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(planeGUI);
 
     var grid = new BABYLON.GUI.Grid();
     grid.addColumnDefinition("100px", true);
