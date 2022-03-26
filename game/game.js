@@ -121,6 +121,33 @@ var createScene = function () {
         map[evt.sourceEvent.key] = evt.sourceEvent.type == "keydown";
     }));
 
+        // gamepad 
+    var SEUIL_DETECTION = 0.5;
+    scene.gamepadManager = new BABYLON.GamepadManager();
+    scene.gamepadManager.onGamepadConnectedObservable.add((gamepad, state)=>{
+        console.log("manette co");
+
+        gamepad.onButtonDownObservable.add((button, state)=>{
+            //Button has been pressed
+            console.log(button);
+            console.log(state);
+        })
+        gamepad.onleftstickchanged((values)=>{
+            map["horizontal"] = (Math.abs(values.x)>SEUIL_DETECTION) ? values.x : 0;
+            map["vertical"] = (Math.abs(values.y)>SEUIL_DETECTION) ? values.y : 0;
+        })
+        gamepad.onrightstickchanged((values)=>{
+            map["right_shooting"] = (values.x>0.5)? values.x : 0;
+            map["left_shooting"] = (values.x<-0.5)? -values.x : 0;
+            map["bottom_shooting"] = (values.y>0.5)? values.y : 0;
+            map["top_shooting"] = (values.y<-0.5)? -values.y : 0;
+        })
+    });
+    scene.gamepadManager.onGamepadDisconnectedObservable.add((gamepad, state)=>{
+        console.log("manette deco");
+    });
+
+
 
     //add a test mob
     var target = new mob(-4,4);
