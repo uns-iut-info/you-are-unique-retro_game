@@ -56,4 +56,13 @@ function updatePlayer(map)
         projs.push(new projectile(player.position.x, player.position.y, 2));
         fireTimer = Date.now() + fireDelay;
     }
+
+    //hitting door
+    for(let i=0; i<doors.length;i++)
+    {
+        if(BABYLON.Vector3.Distance(doors[i].position, player.position) < 1)
+        {
+            console.log("throw the door");
+        }
+    }
 }
