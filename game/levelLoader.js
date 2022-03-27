@@ -54,6 +54,8 @@ function initLevelLoader(scene)
 
 var walls = Array();
 var doors = Array();
+var backgroundTiles = Array();
+var entities = Array();
 
 function loadlevel(level)
 {
@@ -65,9 +67,15 @@ function loadlevel(level)
     var x_offset = level.width/2;
     var y_offset = level.height/2;
 
-    var backgroundTiles = Array();
-    var entities = Array();
+    walls.forEach(e => e.dispose());
+    doors.forEach(e => e.dispose());
+    backgroundTiles.forEach(e => e.dispose());
+    entities.forEach(e => e.dispose());
+    
     walls = Array();
+    doors = Array();
+    backgroundTiles = Array();
+    entities = Array();
 
     // first layer
     for(let h = 0; h < level_h; h++)
@@ -115,6 +123,9 @@ function loadlevel(level)
                 walls.push(instantiateBlock(pos));
         }
     }
+
+    console.log("level loaded!");
+    //reload le level fait bug les projectiles
 }
 
 // --- instances function ---
