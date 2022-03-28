@@ -19,9 +19,10 @@ class blob
 
     update(player) 
     {
-        var dir = player.position.subtract(this.gameobject.position).normalize();
-        dir = dir.scale(0.05);
-        this.gameobject.moveWithCollisions(new BABYLON.Vector3(0, dir.y, 0));
+        let deltatime = engine.getDeltaTime();
+        let dir = player.position.subtract(this.gameobject.position).normalize();
+        dir = dir.scale(0.01);
+        this.gameobject.moveWithCollisions(new BABYLON.Vector3(0, dir.y*deltatime, 0));
     }
 
     takeDamage(dmg)

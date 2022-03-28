@@ -26,15 +26,17 @@ class projectile
 
     update()
     {
-        var speed = 0.06;
+        var speed = 0.006;
+        let deltatime = engine.getDeltaTime();
+
         if(this.dir == 0)
-            this.gameobject.position.y += speed;
+            this.gameobject.position.y += speed*deltatime;
         else if(this.dir == 1)
-            this.gameobject.position.x += speed;
+            this.gameobject.position.x += speed*deltatime;
         else if(this.dir == 2)
-            this.gameobject.position.y -= speed;
+            this.gameobject.position.y -= speed*deltatime;
         else if(this.dir == 3)
-            this.gameobject.position.x -= speed;
+            this.gameobject.position.x -= speed*deltatime;
 
         this.boxCollider.position = this.gameobject.position;
     }
