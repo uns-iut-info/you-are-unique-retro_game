@@ -23,16 +23,18 @@ function updatePlayer(map)
     //movement
     var xdep=0;
     var ydep=0;
+    var speed = 0.0075
 
-    if(map["q"]) xdep = -0.1;
-    if(map["d"]) xdep = 0.1;
-    if(map["z"]) ydep = 0.1;
-    if(map["s"]) ydep = -0.1;
-    if(map["vertical"]) ydep += -map["vertical"]/10;
-    if(map["horizontal"]) xdep += map["horizontal"]/10;
+    if(map["q"]) xdep = -speed;
+    if(map["d"]) xdep = speed;
+    if(map["z"]) ydep = speed;
+    if(map["s"]) ydep = -speed;
+    if(map["vertical"]) ydep += -map["vertical"]*speed;
+    if(map["horizontal"]) xdep += map["horizontal"]*speed;
 
+    var deltatime = engine.getDeltaTime();
 
-    player.moveWithCollisions(new BABYLON.Vector3(xdep, ydep, 0));
+    player.moveWithCollisions(new BABYLON.Vector3(xdep*deltatime, ydep*deltatime, 0));
 
 
     //shooting
