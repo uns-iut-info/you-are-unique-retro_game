@@ -195,7 +195,8 @@ var createScene = function () {
     camera.lockedTarget = background;
 
     initLevelLoader(scene);
-    loadlevel(l);
+    //loadlevel(l);
+    var dj = generateDungeon();
     
     return scene;
 };
