@@ -196,7 +196,8 @@ var createScene = function () {
 
     initLevelLoader(scene);
     //loadlevel(l);
-    var dj = generateDungeon();
+    dj = generateDungeon();
+    currentdjRoom = 0;
     
     return scene;
 };

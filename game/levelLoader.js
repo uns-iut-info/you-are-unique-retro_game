@@ -56,6 +56,9 @@ var doors = Array();
 var backgroundTiles = Array();
 var entities = Array();
 
+var currentdjRoom = 0;
+var dj = Array();
+
 function loadlevel(level)
 {
     var level_tab = level["layer0"].split(' ');
@@ -271,15 +274,16 @@ function generateDungeon()
     var levelData = loadnewlevel(l);
     levelData['doors'][0][2] = 1;
     dungeonLayout.push(levelData);
-    enableRoom(levelData, false);
+    //enableRoom(levelData, false);
 
     for(let i=0;i<dungeonRoomsMin;i++)
     {
-        var dungeonLevel = llevel[Math.floor(Math.random()*(llevel.length -1))];
+        var dungeonLevel = llevel[Math.floor(Math.random()*(llevel.length))];
         var levelData = loadnewlevel(dungeonLevel);
         levelData['doors'][0][2] = -1;
         levelData['doors'][1][2] = 1;
         dungeonLayout.push(levelData);
+        
 
         enableRoom(levelData, false);
     }

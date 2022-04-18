@@ -59,14 +59,23 @@ function updatePlayer(map)
         fireTimer = Date.now() + fireDelay;
     }
 
+
     //hitting door
-    // for(let i=0; i<doors.length;i++)
-    // {
-    //     if(BABYLON.Vector3.Distance(doors[i].position, player.position) < 1)
-    //     {
-    //         console.log("throw the door");
-    //         loadlevel(l2);
-    //         //ajouter des directions au portes pour pouvoir aider a la génération d'un niveau et pour placer le joueur devant la porte et pas dessus
-    //     }
-    // }
+    for(let i=0; i<dj[currentdjRoom]['doors'].length;i++)
+    {
+        if(BABYLON.Vector3.Distance(dj[currentdjRoom]['doors'][i][1].position, player.position) < 1)
+        {
+            console.log("throw the door");
+            
+            enableRoom(dj[currentdjRoom], false);
+            currentdjRoom += dj[currentdjRoom]['doors'][i][2];
+            enableRoom(dj[currentdjRoom], true);
+            player.position.x = 0;
+            player.position.y = 0;
+
+            break;
+            //loadlevel(l2);
+            //ajouter des directions au portes pour pouvoir aider a la génération d'un niveau et pour placer le joueur devant la porte et pas dessus
+        }
+    }
 }
