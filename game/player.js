@@ -68,11 +68,31 @@ function updatePlayer(map)
             console.log("throw the door");
             
             enableRoom(dj[currentdjRoom], false);
-            currentdjRoom += dj[currentdjRoom]['doors'][i][2];
+            let lastDoorValue = dj[currentdjRoom]['doors'][i][2];
+            currentdjRoom += lastDoorValue;
             enableRoom(dj[currentdjRoom], true);
-            player.position.x = 0;
-            player.position.y = 0;
 
+            //search the next door to teleport 
+            for(let j=0;j<dj[currentdjRoom]['doors'].length;j++)
+            {
+                let currentDoor = dj[currentdjRoom]['doors'][j];
+                if((lastDoorValue == 1 && currentDoor[2] == -1) || 
+                    (lastDoorValue == -1 && currentDoor[2] == 1))
+                {
+                    var doorpos  = currentDoor[1].position;
+                    player.position.x = doorpos.x;
+                    player.position.y = doorpos.y;
+
+                    if(currentDoor[0] == 'n') player.position.y += 1.5;
+                    if(currentDoor[0] == 'e') player.position.x -= 1.5;
+                    if(currentDoor[0] == 's') player.position.y -= 1.5;
+                    if(currentDoor[0] == 'o') player.position.x += 1.5;
+        
+                }
+            }
+
+            console.log("go to room" + currentdjRoom);
+            
             break;
             //loadlevel(l2);
             //ajouter des directions au portes pour pouvoir aider a la génération d'un niveau et pour placer le joueur devant la porte et pas dessus
