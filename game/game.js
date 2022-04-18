@@ -195,7 +195,7 @@ var createScene = function () {
     camera.lockedTarget = background;
 
     initLevelLoader(scene);
-    loadlevel(l);
+    //loadlevel(level3);
     
     return scene;
 };

@@ -65,7 +65,7 @@ function updatePlayer(map)
         if(BABYLON.Vector3.Distance(doors[i].position, player.position) < 1)
         {
             console.log("throw the door");
-            loadlevel(l2);
+            loadlevel(level4);
             //ajouter des directions au portes pour pouvoir aider a la génération d'un niveau et pour placer le joueur devant la porte et pas dessus
         }
     }
