@@ -101,26 +101,46 @@ function loadlevel(level)
             var tile = level_entities[w + h*level_w];
             var pos = new BABYLON.Vector3(w - x_offset, (level_h - h) - y_offset, 0);
 
-            if(tile == "1")
+            if(tile == "1") //boxwall
+                walls.push(instantiateBlock(pos));
+
+            if(tile == "2")
             {
                 entities.push(instantiateTile(originalEntityFall, pos));
                 entities.push(instantiateBlock(pos));
             }
-            if(tile == "2")
+            if(tile == "3")
             {
                 entities.push(instantiateTile(originalEntityRock, pos));
                 entities.push(instantiateBlock(pos));
             }
                 
-            if(tile == "3")
+            if(tile == "4")
             {
                 var door = instantiateTile(originalEntityDoor, pos)
                 //entities.push(door);
-                doors.push(door);
+                doors.push(["n",door]);
+            }
+            if(tile == "5")
+            {
+                var door = instantiateTile(originalEntityDoor, pos)
+                //entities.push(door);
+                doors.push(["e",door]);
+            }
+            if(tile == "6")
+            {
+                var door = instantiateTile(originalEntityDoor, pos)
+                //entities.push(door);
+                doors.push(["s",door]);
+            }
+            if(tile == "7")
+            {
+                var door = instantiateTile(originalEntityDoor, pos)
+                //entities.push(door);
+                doors.push(["o",door]);
             }
                 
-            if(tile == "4") //boxwall
-                walls.push(instantiateBlock(pos));
+            
         }
     }
 
