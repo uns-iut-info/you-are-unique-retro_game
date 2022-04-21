@@ -72,96 +72,96 @@ var entities = Array();
 var currentdjRoom = 0;
 var dj = Array();
 
-function loadlevel(level)
-{
-    var level_tab = level["layer0"].split(' ');
+// function loadlevel(level)
+// {
+//     var level_tab = level["layer0"].split(' ');
 
-    var level_h = level.height;
-    var level_w = level.width;
+//     var level_h = level.height;
+//     var level_w = level.width;
 
-    var x_offset = level.width/2;
-    var y_offset = level.height/2;
+//     var x_offset = level.width/2;
+//     var y_offset = level.height/2;
 
-    walls.forEach(e => e.dispose());
-    doors.forEach(e => e.dispose());
-    backgroundTiles.forEach(e => e.dispose());
-    entities.forEach(e => e.dispose());
+//     walls.forEach(e => e.dispose());
+//     doors.forEach(e => e.dispose());
+//     backgroundTiles.forEach(e => e.dispose());
+//     entities.forEach(e => e.dispose());
     
-    walls = Array();
-    doors = Array();
-    backgroundTiles = Array();
-    entities = Array();
+//     walls = Array();
+//     doors = Array();
+//     backgroundTiles = Array();
+//     entities = Array();
 
-    // first layer
-    for(let h = 0; h < level_h; h++)
-    {
-        for(let w = 0; w < level_w; w++)
-        {
-            var tile = level_tab[w + h*level_w];
-            var pos = new BABYLON.Vector3(w - x_offset, (level_h - h) - y_offset, 0);
-            if(tile == "1")
-                backgroundTiles.push(instantiateTile(originalBlockList[0], pos));
-            if(tile == "2")
-                backgroundTiles.push(instantiateTile(originalBlockList[1], pos));
-        }
-    }
+//     // first layer
+//     for(let h = 0; h < level_h; h++)
+//     {
+//         for(let w = 0; w < level_w; w++)
+//         {
+//             var tile = level_tab[w + h*level_w];
+//             var pos = new BABYLON.Vector3(w - x_offset, (level_h - h) - y_offset, 0);
+//             if(tile == "1")
+//                 backgroundTiles.push(instantiateTile(originalBlockList[0], pos));
+//             if(tile == "2")
+//                 backgroundTiles.push(instantiateTile(originalBlockList[1], pos));
+//         }
+//     }
 
-    var level_entities = level["layer1"].split(' ');
+//     var level_entities = level["layer1"].split(' ');
 
-    // entity layer
-    for(let h = 0; h < level_h; h++)
-    {
-        for(let w = 0; w < level_w; w++)
-        {
-            var tile = level_entities[w + h*level_w];
-            var pos = new BABYLON.Vector3(w - x_offset, (level_h - h) - y_offset, 0);
+//     // entity layer
+//     for(let h = 0; h < level_h; h++)
+//     {
+//         for(let w = 0; w < level_w; w++)
+//         {
+//             var tile = level_entities[w + h*level_w];
+//             var pos = new BABYLON.Vector3(w - x_offset, (level_h - h) - y_offset, 0);
 
-            if(tile == "1") //boxwall
-                walls.push(instantiateBlock(pos));
+//             if(tile == "1") //boxwall
+//                 walls.push(instantiateBlock(pos));
 
-            if(tile == "2")
-            {
-                entities.push(instantiateTile(originalEntityFall, pos));
-                entities.push(instantiateBlock(pos));
-            }
-            if(tile == "3")
-            {
-                entities.push(instantiateTile(originalEntityRock, pos));
-                entities.push(instantiateBlock(pos));
-            }
+//             if(tile == "2")
+//             {
+//                 entities.push(instantiateTile(originalEntityFall, pos));
+//                 entities.push(instantiateBlock(pos));
+//             }
+//             if(tile == "3")
+//             {
+//                 entities.push(instantiateTile(originalEntityRock, pos));
+//                 entities.push(instantiateBlock(pos));
+//             }
                 
-            if(tile == "4")
-            {
-                var door = instantiateTile(originalEntityDoor, pos)
-                //entities.push(door);
-                doors.push(["n",door]);
-            }
-            if(tile == "5")
-            {
-                var door = instantiateTile(originalEntityDoor, pos)
-                //entities.push(door);
-                doors.push(["e",door]);
-            }
-            if(tile == "6")
-            {
-                var door = instantiateTile(originalEntityDoor, pos)
-                //entities.push(door);
-                doors.push(["s",door]);
-            }
-            if(tile == "7")
-            {
-                var door = instantiateTile(originalEntityDoor, pos)
-                //entities.push(door);
-                doors.push(["o",door]);
-            }
+//             if(tile == "4")
+//             {
+//                 var door = instantiateTile(originalEntityDoor, pos)
+//                 //entities.push(door);
+//                 doors.push(["n",door]);
+//             }
+//             if(tile == "5")
+//             {
+//                 var door = instantiateTile(originalEntityDoor, pos)
+//                 //entities.push(door);
+//                 doors.push(["e",door]);
+//             }
+//             if(tile == "6")
+//             {
+//                 var door = instantiateTile(originalEntityDoor, pos)
+//                 //entities.push(door);
+//                 doors.push(["s",door]);
+//             }
+//             if(tile == "7")
+//             {
+//                 var door = instantiateTile(originalEntityDoor, pos)
+//                 //entities.push(door);
+//                 doors.push(["o",door]);
+//             }
                 
             
-        }
-    }
+//         }
+//     }
 
-    console.log("level loaded!");
-    //reload le level fait bug les projectiles
-}
+//     console.log("level loaded!");
+//     //reload le level fait bug les projectiles
+// }
 
 function loadnewlevel(level)
 {
@@ -247,8 +247,10 @@ function loadnewlevel(level)
                 //entities.push(door);
                 leveldoors.push(["o",door, 0]);
             }
-                
-            
+            if(tile == "8")
+            {
+                //enemy spawn...
+            }
         }
     }
 
@@ -278,6 +280,7 @@ function instantiateBlock(position)
     return instance;
 }
 
+
 function getOpposideDirection(dir)
 {
     let targetDir = "s"; // south
@@ -293,7 +296,7 @@ function findRoomWithDir(dir)
     let dirvalue = "4";
     if(dir == "e") dirvalue = "5";
     if(dir == "s") dirvalue = "6";
-    if(dir == "o") dirvalue = "7";    //correspondance 4:n, 5:e, 6:s, 7:o
+    if(dir == "o") dirvalue = "7";
 
     validRooms = Array();
     llevel.forEach(room => {
@@ -321,12 +324,10 @@ function generateDungeon()
 
     for(let i=0;i<dungeonRoomsCount;i++)
     {
-        //var dungeonLevel = llevel[Math.floor(Math.random()*(llevel.length))];
         //we search for the opposite direction
         let targetDir = getOpposideDirection(lastRoomNextDir);
         var dungeonLevel = findRoomWithDir(targetDir);
         var levelData = loadnewlevel(dungeonLevel);
-        //levelData['doors'][0][2] = 1;
 
         if(levelData['doors'][0][0] == targetDir)
         {
@@ -340,14 +341,8 @@ function generateDungeon()
             levelData['doors'][1][2] = -1;
             lastRoomNextDir = levelData['doors'][0][0];
         }
-            
-        console.log("add room " + levelData['doors']);
 
-        // levelData['doors'][0][2] = -1;
-        // levelData['doors'][1][2] = 1;
         dungeonLayout.push(levelData);
-        
-
         enableRoom(levelData, false);
     }
 
