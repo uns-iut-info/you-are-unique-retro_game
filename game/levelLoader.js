@@ -278,23 +278,73 @@ function instantiateBlock(position)
     return instance;
 }
 
+function getOpposideDirection(dir)
+{
+    let targetDir = "s"; // south
+    if(dir == "e") targetDir = "o"; //west
+    if(dir == "s") targetDir = "n"; //north
+    if(dir == "o") targetDir = "e"; //east
+
+    return targetDir;
+}
+
+function findRoomWithDir(dir)
+{
+    let dirvalue = "4";
+    if(dir == "e") dirvalue = "5";
+    if(dir == "s") dirvalue = "6";
+    if(dir == "o") dirvalue = "7";    //correspondance 4:n, 5:e, 6:s, 7:o
+
+    validRooms = Array();
+    llevel.forEach(room => {
+        if(room.layer1.includes(dirvalue))
+            validRooms.push(room);
+    })
+
+    return validRooms[Math.floor(Math.random()*(validRooms.length))];
+}
+
 function generateDungeon()
 {
     var dungeonRoomsMin = 4;
+    var dungeonRoomsMax = 8;
+    var dungeonRoomsCount = Math.floor(Math.random() * (dungeonRoomsMax - dungeonRoomsMin + 1) + dungeonRoomsMin);
 
     var dungeonLayout = Array();
 
-    var levelData = loadnewlevel(l);
-    levelData['doors'][0][2] = 1;
-    dungeonLayout.push(levelData);
+    var startlevelData = loadnewlevel(l);
+    startlevelData['doors'][0][2] = 1;
+    dungeonLayout.push(startlevelData);
     //enableRoom(levelData, false);
 
-    for(let i=0;i<dungeonRoomsMin;i++)
+    var lastRoomNextDir = "e";
+
+    for(let i=0;i<dungeonRoomsCount;i++)
     {
-        var dungeonLevel = llevel[Math.floor(Math.random()*(llevel.length))];
+        //var dungeonLevel = llevel[Math.floor(Math.random()*(llevel.length))];
+        //we search for the opposite direction
+        let targetDir = getOpposideDirection(lastRoomNextDir);
+        var dungeonLevel = findRoomWithDir(targetDir);
         var levelData = loadnewlevel(dungeonLevel);
-        levelData['doors'][0][2] = -1;
-        levelData['doors'][1][2] = 1;
+        //levelData['doors'][0][2] = 1;
+
+        if(levelData['doors'][0][0] == targetDir)
+        {
+            levelData['doors'][0][2] = -1;
+            levelData['doors'][1][2] = 1;
+            lastRoomNextDir = levelData['doors'][1][0];
+        }
+        else
+        {
+            levelData['doors'][0][2] = 1;
+            levelData['doors'][1][2] = -1;
+            lastRoomNextDir = levelData['doors'][0][0];
+        }
+            
+        console.log("add room " + levelData['doors']);
+
+        // levelData['doors'][0][2] = -1;
+        // levelData['doors'][1][2] = 1;
         dungeonLayout.push(levelData);
         
 
@@ -302,14 +352,14 @@ function generateDungeon()
     }
 
     //boss room
-    var levelData = loadnewlevel(bossRoom);
-    levelData['doors'][0][2] = -1;
-    dungeonLayout.push(levelData);
+    var endlevelData = loadnewlevel(bossRoom);
+    endlevelData['doors'][0][2] = -1;
+    dungeonLayout.push(endlevelData);
 
-    enableRoom(levelData, false);
+    enableRoom(endlevelData, false);
 
 
-    console.log("dungeon generated");
+    console.log("dungeon generated: " + dungeonRoomsCount + " rooms");
     return dungeonLayout;
 }
 

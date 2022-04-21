@@ -76,6 +76,7 @@ function updatePlayer(map)
             for(let j=0;j<dj[currentdjRoom]['doors'].length;j++)
             {
                 let currentDoor = dj[currentdjRoom]['doors'][j];
+
                 if((lastDoorValue == 1 && currentDoor[2] == -1) || 
                     (lastDoorValue == -1 && currentDoor[2] == 1))
                 {
