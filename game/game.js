@@ -42,11 +42,11 @@ var createScene = function () {
     // This attaches the camera to the canvas
     //camera.attachControl(canvas, true);
 
-    var background = BABYLON.MeshBuilder.CreatePlane("player", {width: 14, height: 14}, scene);
-    background.material = new BABYLON.StandardMaterial("noLight", scene);
-    background.material.disableLighting = true;
-    background.material.emissiveColor = BABYLON.Color3.White();
-    background.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaac_fr_gamepedia/images/7/71/Basement.png", scene);
+    // var background = BABYLON.MeshBuilder.CreatePlane("player", {width: 14, height: 14}, scene);
+    // background.material = new BABYLON.StandardMaterial("noLight", scene);
+    // background.material.disableLighting = true;
+    // background.material.emissiveColor = BABYLON.Color3.White();
+    // background.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaac_fr_gamepedia/images/7/71/Basement.png", scene);
      
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
@@ -192,7 +192,7 @@ var createScene = function () {
     })
 
     //look at room center
-    camera.lockedTarget = background;
+    //camera.lockedTarget = background;
 
     initLevelLoader(scene);
     //loadlevel(l);
