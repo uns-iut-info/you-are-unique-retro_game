@@ -7,6 +7,19 @@ var l2 = { width: 20, height: 20, layer0: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 var llevel = Array();
 llevel.push({ width: 10, height: 10, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 3 0 0 0 0 0 0 3 1 1 0 2 2 2 2 2 2 0 1 7 0 0 0 2 0 0 0 0 1 1 0 0 0 2 0 2 0 0 5 1 0 0 0 0 0 2 0 0 1 1 0 0 0 0 0 2 0 0 1 1 0 2 2 2 2 2 2 0 1 1 3 0 0 0 0 0 0 3 1 1 1 1 1 1 1 1 1 1 1 "});
 llevel.push({ width: 10, height: 10, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 2 2 0 1 1 0 2 3 2 0 3 2 0 5 1 0 0 3 2 0 3 0 0 1 1 0 0 3 2 0 3 0 0 1 1 0 0 3 0 0 3 0 0 1 1 0 0 3 0 0 3 0 0 1 7 0 2 3 0 2 3 2 0 1 1 0 2 2 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
+
+llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 7 0 0 2 2 2 2 0 0 5 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
+llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 3 0 3 0 0 3 0 3 1 7 0 0 0 0 0 0 0 0 5 1 3 0 3 0 0 3 0 3 1 1 1 1 1 1 1 1 1 1 1 "});
+llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 7 0 0 3 0 0 0 0 0 5 1 0 0 0 0 0 3 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
+
+// llevel.push();
+// llevel.push();
+// llevel.push();
+// llevel.push();
+// llevel.push();
+
+
+var bossRoom = { width: 10, height: 10, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 2 2 2 0 0 2 2 2 1 1 1 1 1 1 4 1 1 1 1 "};
 //original objects for level
 var originalBlockList = Array(); // for the background layer
 
@@ -287,6 +300,14 @@ function generateDungeon()
 
         enableRoom(levelData, false);
     }
+
+    //boss room
+    var levelData = loadnewlevel(bossRoom);
+    levelData['doors'][0][2] = -1;
+    dungeonLayout.push(levelData);
+
+    enableRoom(levelData, false);
+
 
     console.log("dungeon generated");
     return dungeonLayout;

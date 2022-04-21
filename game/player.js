@@ -63,7 +63,7 @@ function updatePlayer(map)
     //hitting door
     for(let i=0; i<dj[currentdjRoom]['doors'].length;i++)
     {
-        if(BABYLON.Vector3.Distance(dj[currentdjRoom]['doors'][i][1].position, player.position) < 1)
+        if(BABYLON.Vector3.Distance(dj[currentdjRoom]['doors'][i][1].position, player.position) < 0.5)
         {
             console.log("throw the door");
             
