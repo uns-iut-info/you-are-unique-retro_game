@@ -33,9 +33,9 @@ function updatePlayer(map)
     if(map["horizontal"]) xdep += map["horizontal"]*speed;
 
     var deltatime = engine.getDeltaTime();
-
+    
     player.moveWithCollisions(new BABYLON.Vector3(xdep*deltatime, ydep*deltatime, 0));
-
+    player.position.z = -0.3;
 
     //shooting
     if((map["ArrowLeft"] || map["left_shooting"]) && Date.now() > fireTimer)
