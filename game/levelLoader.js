@@ -5,14 +5,15 @@ var l =
 var l2 = { width: 20, height: 20, layer0: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 2 2 2 2 2 2 2 2 2 2 2 2 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ", layer1: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 4 4 0 0 0 0 0 0 4 2 2 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 4 0 0 0 0 0 0 1 1 1 1 0 0 4 0 0 0 0 0 0 4 1 1 1 0 0 0 1 0 0 0 0 2 4 0 0 0 0 0 0 3 0 0 0 0 0 0 1 0 2 0 0 2 4 0 0 0 0 0 0 4 1 1 1 0 0 0 1 0 0 0 0 2 4 0 0 0 0 0 0 4 0 0 0 0 0 0 1 1 1 1 0 0 4 0 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 4 0 0 0 0 0 0 1 1 1 1 0 0 4 0 0 0 0 0 0 4 2 2 2 0 0 0 0 0 0 0 0 2 4 0 0 0 0 0 0 4 2 2 2 0 0 0 0 0 0 0 2 2 4 0 0 0 0 0 0 4 4 4 4 4 4 4 3 4 4 4 4 4 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "}
 
 var llevel = Array();
-llevel.push({ width: 10, height: 10, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 3 0 0 0 0 0 0 3 1 1 0 2 2 2 2 2 2 0 1 7 0 0 0 2 0 0 0 0 1 1 0 0 0 2 0 2 0 0 5 1 0 0 0 0 0 2 0 0 1 1 0 0 0 0 0 2 0 0 1 1 0 2 2 2 2 2 2 0 1 1 3 0 0 0 0 0 0 3 1 1 1 1 1 1 1 1 1 1 1 "});
-llevel.push({ width: 10, height: 10, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 2 2 0 1 1 0 2 3 2 0 3 2 0 5 1 0 0 3 2 0 3 0 0 1 1 0 0 3 2 0 3 0 0 1 1 0 0 3 0 0 3 0 0 1 1 0 0 3 0 0 3 0 0 1 7 0 2 3 0 2 3 2 0 1 1 0 2 2 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
+//llevel.push({ width: 10, height: 10, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 3 0 0 0 0 0 0 3 1 1 0 2 2 2 2 2 2 0 1 7 0 0 0 2 0 0 0 0 1 1 0 0 0 2 0 2 0 0 5 1 0 0 0 0 0 2 0 0 1 1 0 0 0 0 0 2 0 0 1 1 0 2 2 2 2 2 2 0 1 1 3 0 0 0 0 0 0 3 1 1 1 1 1 1 1 1 1 1 1 "});
+// llevel.push({ width: 10, height: 10, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 2 2 0 1 1 0 2 3 2 0 3 2 0 5 1 0 0 3 2 0 3 0 0 1 1 0 0 3 2 0 3 0 0 1 1 0 0 3 0 0 3 0 0 1 1 0 0 3 0 0 3 0 0 1 7 0 2 3 0 2 3 2 0 1 1 0 2 2 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
 
-llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 7 0 0 2 2 2 2 0 0 5 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
-llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 3 0 3 0 0 3 0 3 1 7 0 0 0 0 0 0 0 0 5 1 3 0 3 0 0 3 0 3 1 1 1 1 1 1 1 1 1 1 1 "});
-llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 7 0 0 3 0 0 0 0 0 5 1 0 0 0 0 0 3 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
+// llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 7 0 0 2 2 2 2 0 0 5 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
+// llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 3 0 3 0 0 3 0 3 1 7 0 0 0 0 0 0 0 0 5 1 3 0 3 0 0 3 0 3 1 1 1 1 1 1 1 1 1 1 1 "});
+// llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 7 0 0 3 0 0 0 0 0 5 1 0 0 0 0 0 3 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
 
-// llevel.push();
+llevel.push({ width: 10, height: 10, layer0: "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 15 15 15 15 15 15 15 15 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 10 10 10 10 10 10 10 10 10 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 7 0 0 0 0 0 0 0 0 5 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
+llevel.push({ width: 10, height: 10, layer0: "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 12 12 11 15 15 15 15 15 10 10 14 14 12 15 15 15 15 15 10 10 15 15 12 12 12 11 15 15 10 10 15 15 11 12 12 12 15 15 10 10 15 15 14 14 14 12 15 15 10 10 15 15 15 15 15 11 12 12 10 10 15 15 15 15 15 14 14 14 10 10 10 10 10 10 10 10 10 10 10 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 7 0 0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 "});
 // llevel.push();
 // llevel.push();
 // llevel.push();
@@ -25,7 +26,10 @@ var originalBlockList = Array(); // for the background layer
 
 var originalEntityFall;
 var originalEntityRock;
-var originalEntityDoor;
+var originalEntityDoorN;
+var originalEntityDoorE;
+var originalEntityDoorS;
+var originalEntityDoorO;
 var originalBoxCollider;
 
 //init original prefabs
@@ -42,20 +46,28 @@ function initLevelLoader(scene)
     tileMaterial.diffuseTexture.hasAlpha = true;
 
     //tiles
-    for(let i=0; i<3; i++)
+    for(let i=0; i<16; i++)
         originalBlockList.push(CreateTile(scene, i));
 
     originalEntityFall = CreateTile(scene, 2);
     originalEntityRock = CreateTile(scene, 3);
-    originalEntityDoor = CreateTile(scene, 4);
+    originalEntityDoorN = CreateTile(scene, 4);
+    originalEntityDoorE = CreateTile(scene, 5);
+    originalEntityDoorS = CreateTile(scene, 6);
+    originalEntityDoorO = CreateTile(scene, 7);
 
     originalBoxCollider = BABYLON.MeshBuilder.CreateBox("b", {size:0}, scene);
     originalBoxCollider.isVisible = false;
 
     function CreateTile(scene, textureIndex)
     {
-        var faceUV = new BABYLON.Vector4(textureIndex/8, 0, (textureIndex+1)/8, 1/6);
-
+        var columns = 8;
+        var rows = 6;
+        var textureOffset = 0.001; // pour fix les le clipping de la texture
+        //var faceUV = new BABYLON.Vector4(textureIndex/8, 0, (textureIndex+1)/8, 1/6);
+        var faceUV = new BABYLON.Vector4((textureIndex/8)%1 + textureOffset, Math.floor(textureIndex/8)/6 + textureOffset, (textureIndex/8)%1 + 1/8 - textureOffset, Math.floor(textureIndex/8)/6 + 1/6 - textureOffset);
+        //var faceUV = new BABYLON.Vector4(5/8, 0/6, (5+1)/8, 1/6);
+        console.log(faceUV);
         var tile = BABYLON.MeshBuilder.CreatePlane("tile", {frontUVs:faceUV, width:1, height:1, sideOrientation:BABYLON.Mesh.DOUBLESIDE}, scene);
         tile.material = tileMaterial;
         tile.position = new BABYLON.Vector3(0, -100, 0);
@@ -196,6 +208,20 @@ function loadnewlevel(level)
                 levelbackgroundTiles.push(instantiateTile(originalBlockList[0], pos));
             if(tile == "2")
                 levelbackgroundTiles.push(instantiateTile(originalBlockList[1], pos));
+            if(tile == "9")
+                levelbackgroundTiles.push(instantiateTile(originalBlockList[8], pos));
+            if(tile == "10")
+                levelbackgroundTiles.push(instantiateTile(originalBlockList[9], pos));
+            if(tile == "11")
+                levelbackgroundTiles.push(instantiateTile(originalBlockList[10], pos));
+            if(tile == "12")
+                levelbackgroundTiles.push(instantiateTile(originalBlockList[11], pos));
+            if(tile == "13")
+                levelbackgroundTiles.push(instantiateTile(originalBlockList[12], pos));
+            if(tile == "14")
+                levelbackgroundTiles.push(instantiateTile(originalBlockList[13], pos));
+            if(tile == "15")
+                levelbackgroundTiles.push(instantiateTile(originalBlockList[14], pos));
         }
     }
 
@@ -225,25 +251,25 @@ function loadnewlevel(level)
                 
             if(tile == "4")
             {
-                var door = instantiateTile(originalEntityDoor, pos)
+                var door = instantiateTile(originalEntityDoorN, pos)
                 //entities.push(door);
                 leveldoors.push(["n",door, 0]);
             }
             if(tile == "5")
             {
-                var door = instantiateTile(originalEntityDoor, pos)
+                var door = instantiateTile(originalEntityDoorE, pos)
                 //entities.push(door);
                 leveldoors.push(["e",door, 0]);
             }
             if(tile == "6")
             {
-                var door = instantiateTile(originalEntityDoor, pos)
+                var door = instantiateTile(originalEntityDoorS, pos)
                 //entities.push(door);
                 leveldoors.push(["s",door, 0]);
             }
             if(tile == "7")
             {
-                var door = instantiateTile(originalEntityDoor, pos)
+                var door = instantiateTile(originalEntityDoorO, pos)
                 //entities.push(door);
                 leveldoors.push(["o",door, 0]);
             }

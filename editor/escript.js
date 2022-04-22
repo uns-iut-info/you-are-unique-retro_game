@@ -4,7 +4,7 @@ var height;
 var selectedBlock=0;
 var selectedEntity=0;
 
-var block = ["empty.png", "bricks.png", "ground.png"];
+var block = ["empty.png", "bricks.png", "ground.png", "x", "x", "x", "x", "x", "x", "rockground.png", "bricksold.png", "dallerec.png", "dalle.png", "dirt.png", "waterborder.png", "water.png"];
 var entity = ["empty.png", "wall_entity.png", "fall.png", "rock.png", "door.png", "door_east.png", "door_south.png", "door_west.png", "enemy_spawn.png"];
 var spawn = "resources/editor/spawn.png";
 var exit = "resources/editor/exit.png";
