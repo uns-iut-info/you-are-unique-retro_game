@@ -8,6 +8,11 @@ var projs = new Array();
 var fireTimer = Date.now();
 var fireDelay = 200;
 
+var grid;
+var image1;
+var image2;
+var image3;
+
 function createPlayer()
 {
     player = BABYLON.CreatePlane("player", {width:1, height:1}, scene);
@@ -107,14 +112,61 @@ function updatePlayer(map)
 }
 
 function playerTakeDamage(dmg)
-    {
-        playerHealth -= dmg;
-        console.log("player take " + dmg + " damage !");
+{
+    playerHealth -= dmg;
+    console.log("player take " + dmg + " damage !");
 
-        if(playerHealth <= 0)
-        {
-            playerDead = true;
-            console.log("player is dead");
-        }
-            
+    if(playerHealth <= 0)
+    {
+        playerDead = true;
+        console.log("player is dead");
     }
+        
+    updateHealthUI();
+}
+
+function createGUI()
+{
+    //-------- GUI --------
+    var planeGUI = BABYLON.MeshBuilder.CreatePlane("planeGUI", {size:10}, scene);
+    planeGUI.position.y = 1.5;
+    planeGUI.position.x = -1;
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(planeGUI);
+
+    grid = new BABYLON.GUI.Grid();
+    grid.addColumnDefinition("100px", true);
+    grid.addColumnDefinition("100px", true);
+    grid.addColumnDefinition("300px", true);
+    grid.top = "-450px";
+    grid.left = "250px";
+    advancedTexture.addControl(grid);
+
+    image1 = new BABYLON.GUI.Image("heart1", "heart.png");
+    image1.width = "100px";
+    image1.height = "100px";
+    image2 = new BABYLON.GUI.Image("heart2", "heart.png");
+    image2.width = "100px";
+    image2.height = "100px";
+    image3 = new BABYLON.GUI.Image("heart3", "heart.png");
+    image3.width = "100px";
+    image3.height = "100px";
+    grid.addControl(image1, 0, 0);
+    grid.addControl(image2, 0, 1);
+    grid.addControl(image3, 0, 2);
+    //grid.removeControl(image3); //Remove last Heart
+}
+
+// call to update player hearth
+function updateHealthUI()
+{
+    grid.removeControl(image1);
+    grid.removeControl(image2);
+    grid.removeControl(image3);
+
+    if(playerHealth > 0)
+        grid.addControl(image1, 0, 0);
+    if(playerHealth > 2)
+        grid.addControl(image2, 0, 1);
+    if(playerHealth > 4)
+        grid.addControl(image3, 0, 2);
+}
