@@ -138,9 +138,7 @@ var createScene = function () {
     scene.registerAfterRender(function(){
 
         updatePlayer(map);
-        for (let target of targets){
-            target.update(player);
-        }
+        targets.forEach(target => { target.update(player) });
 
 
         //move this later in the player update function
