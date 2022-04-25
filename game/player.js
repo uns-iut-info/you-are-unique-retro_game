@@ -1,5 +1,8 @@
 var player;
 
+var playerMaxHealth = 6;
+var playerHealth = playerMaxHealth;
+var playerDead = false;
 var projs = new Array();
 
 var fireTimer = Date.now();
@@ -102,3 +105,16 @@ function updatePlayer(map)
         }
     }
 }
+
+function playerTakeDamage(dmg)
+    {
+        playerHealth -= dmg;
+        console.log("player take " + dmg + " damage !");
+
+        if(playerHealth <= 0)
+        {
+            playerDead = true;
+            console.log("player is dead");
+        }
+            
+    }
