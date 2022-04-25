@@ -132,6 +132,8 @@ var createScene = function () {
     targets.push(new mob(-4,4));
     targets.push(new blob(4,-4));
 
+    createCollectible(new collectible(0, 2))
+
     //main loop
     scene.registerAfterRender(function(){
 
@@ -161,8 +163,10 @@ var createScene = function () {
                     console.log("hit");
                 }
             }
-    
         }
+
+        //update collectible
+        collectibles.forEach(c => {c.update(player)});
     })
 
     //look at room center
