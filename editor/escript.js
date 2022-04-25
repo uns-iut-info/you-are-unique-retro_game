@@ -167,9 +167,52 @@ function loadMap()
     var stringdata = document.getElementById("maploader");
     
     var stringLevel = stringdata.value;
-    var plusexplode = stringLevel.split("+");
 
-    for(var i = 0;i<plusexplode.length;i++)
+    var height = stringLevel["height"];
+    var width = stringLevel["width"];
+    console.log(stringdata);
+    var layer0 = stringLevel.layer0;
+    var layer1 = stringLevel.layer1;
+
+    var tablehtml = "<table>";
+
+//layer0
+    for (let ligne=0;ligne<height;ligne++){
+        tablehtml += "<tr>";
+        for (let colonne=0; colonne<width;colonne++){
+            let elem = substring[colonne];
+            let index = block[elem];
+            console.log(index);
+            let id = colonne + "-" + ligne;
+            let onclick = "updateBlock('"+ id+ "')";
+            tablehtml += "<td id="+ id + " onclick=" + onclick +"><img id='img"+id+"' src='"+index+"' width='64' height='64'></td>";
+        }
+        tablehtml += "</tr>";
+    }
+    tablehtml += "</table>";
+    tablehtml += "<table>";
+
+//layer1
+    for (let ligne=0;ligne<height;ligne++){
+        for (let colonne=0; colonne<width;colonne++){
+            let elem = substring[colonne];
+            let index = block[elem];
+            console.log(index);
+            let id = colonne + "-" + ligne;
+            let onclick = "updateBlock('"+ id+ "')";
+            tablehtml += "<td id="+ id + " onclick=" + onclick +"><img id='img"+id+"' src='"+index+"' width='64' height='64'></td>";
+        }
+        tablehtml += "</tr>";
+    }
+    tablehtml += "</table>";
+
+    document.getElementById("tab").innerHTML = tablehtml;
+
+    stringdata.value = "";
+    console.log(tablehtml)
+    document.getElementById("converterButton").hidden = false; //draw the export button
+
+/*    for(var i = 0;i<plusexplode.length;i++)
     {
         var firstIndex = plusexplode[i].indexOf("\"")+1;
         var lastIndex = plusexplode[i].lastIndexOf("\"")-3;
@@ -222,6 +265,7 @@ function loadMap()
 
     stringdata.value = "";
     document.getElementById("converterButton").hidden = false; //draw the export button
+    */
 }
 
     
