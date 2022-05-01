@@ -6,10 +6,9 @@ var selectedEntity=0;
 
 var block = ["empty.png", "bricks.png", "ground.png", "x", "x", "x", "x", "x", "x", "rockground.png", "bricksold.png", "dallerec.png", "dalle.png", "dirt.png", "waterborder.png", "water.png"];
 var entity = ["empty.png", "wall_entity.png", "fall.png", "rock.png", "door.png", "door_east.png", "door_south.png", "door_west.png", "enemy_spawn.png"];
-var spawn = "resources/editor/spawn.png";
-var exit = "resources/editor/exit.png";
+/*var exit = "resources/editor/exit.png";
 var poro = "resources/editor/poro_editor.png";
-var poroVolant = "resources/editor/poroVolant_editor.png";
+var poroVolant = "resources/editor/poroVolant_editor.png";*/
 
 var imgDiv = document.getElementById("palette");
 
@@ -101,36 +100,27 @@ function updateEntity(id)
 
 function convertMap()
 {
-    var layer1 = "layer1: \"";
+    var layer1 = "\"layer1\": \"";
     var output= "{";
-    output += " width: " + width;
-    output += ", height: " + height;
-    output += ", layer0: \"";
+    output += " \"width\": " + width;
+    output += ", \"height\": " + height;
+    output += ", \"layer0\": \"";
     for(var y=0; y<height;y++)
     {
         for(var x=0; x<width;x++)
         {
             var imgsrc = document.getElementById("img"+x+"-"+y).src;
+            if (y<1)
+                console.log(imgsrc);
 
-            if(imgsrc.includes(spawn))
-                output += "x ";
-            else if(imgsrc.includes(exit))
-                output += "e ";
-            else if(imgsrc.includes(poro))
-                output += "p ";
-            else if(imgsrc.includes(poroVolant))
-                output += "v ";
-
-            else
+            for(var i=0; i<block.length;i++)
             {
-                for(var i=0; i<block.length;i++)
+                if((i<3 || i>8) && imgsrc.includes(block[i]))
                 {
-                    if(imgsrc.includes(block[i]))
-                    {
-                        output += i +" ";
-                    }
+                    output += i +" ";
                 }
             }
+
 
             var imgsrc = document.getElementById("eimg"+x+"-"+y).src;
 
@@ -149,7 +139,8 @@ function convertMap()
     out.innerHTML = output;
     out.select();
 
-    document.execCommand("copy");
+    navigator.clipboard.writeText(output);
+
     var elem = document.getElementById("hide");
 
     if(elem != null)
@@ -165,14 +156,16 @@ function convertMap()
 function loadMap()
 {
     var stringdata = document.getElementById("maploader");
-    
-    var stringLevel = stringdata.value;
+    console.log(stringdata.value);
 
-    var height = stringLevel["height"];
-    var width = stringLevel["width"];
+    var stringLevel = JSON.parse(stringdata.value);
+    height = stringLevel["height"];
+    width = stringLevel["width"];
+    console.log(height);
     console.log(stringdata);
-    var layer0 = stringLevel.layer0;
-    var layer1 = stringLevel.layer1;
+    console.log(stringLevel);
+    var layer0 = stringLevel.layer0.split(' ');
+    var layer1 = stringLevel.layer1.split(' ');
 
     var tablehtml = "<table>";
 
@@ -180,9 +173,9 @@ function loadMap()
     for (let ligne=0;ligne<height;ligne++){
         tablehtml += "<tr>";
         for (let colonne=0; colonne<width;colonne++){
-            let elem = substring[colonne];
+            let elem = layer0[ligne*width+colonne];
             let index = block[elem];
-            console.log(index);
+            console.log("id : "+elem);
             let id = colonne + "-" + ligne;
             let onclick = "updateBlock('"+ id+ "')";
             tablehtml += "<td id="+ id + " onclick=" + onclick +"><img id='img"+id+"' src='"+index+"' width='64' height='64'></td>";
@@ -195,12 +188,12 @@ function loadMap()
 //layer1
     for (let ligne=0;ligne<height;ligne++){
         for (let colonne=0; colonne<width;colonne++){
-            let elem = substring[colonne];
-            let index = block[elem];
+            let elem = layer1[ligne*width+colonne];
+            let index = entity[elem];
             console.log(index);
             let id = colonne + "-" + ligne;
             let onclick = "updateBlock('"+ id+ "')";
-            tablehtml += "<td id="+ id + " onclick=" + onclick +"><img id='img"+id+"' src='"+index+"' width='64' height='64'></td>";
+            tablehtml += "<td id="+ id + " onclick=" + onclick +"><img id='eimg"+id+"' src='"+index+"' width='64' height='64'></td>";
         }
         tablehtml += "</tr>";
     }
