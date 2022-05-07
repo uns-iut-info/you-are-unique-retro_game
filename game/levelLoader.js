@@ -276,6 +276,7 @@ function loadnewlevel(level)
             if(tile == "8")
             {
                 //enemy spawn...
+                var mob = new mob(pos.x, pos.y);
             }
         }
     }
