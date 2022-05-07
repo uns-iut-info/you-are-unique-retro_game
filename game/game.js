@@ -56,30 +56,12 @@ var createScene = function () {
 
     createPlayer(); //initialize player related stuff
 
-    // create wall room
-    // var box = BABYLON.MeshBuilder.CreateBox("Box", {size:2}, scene);
-    // box.position.x = -7;
-    // box.scaling.y = 6;
-    // box.checkCollisions = true;
-    // box.isVisible = false;
+    // ------ audio -------
+    BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
+    var music_castle = new BABYLON.Sound("Music", "castle_music.mp3", scene, null, {loop: true, autoplay: true});
 
-    // var box2 = BABYLON.MeshBuilder.CreateBox("Box", {size:2}, scene);
-    // box2.position.x = 7;
-    // box2.scaling.y = 6;
-    // box2.checkCollisions = true;
-    // box2.isVisible = false;
-
-    // var box3 = BABYLON.MeshBuilder.CreateBox("Box", {size:2}, scene);
-    // box3.position.y = 7;
-    // box3.scaling.x = 6;
-    // box3.checkCollisions = true;
-    // box3.isVisible = false;
-
-    // var box4 = BABYLON.MeshBuilder.CreateBox("Box", {size:2}, scene);
-    // box4.position.y = -7;
-    // box4.scaling.x = 6;
-    // box4.checkCollisions = true;
-    // box4.isVisible = false;
+    var currentMusic = music_castle;
+    currentMusic.play();
 
     // ------ gui -------
     createGUI();
