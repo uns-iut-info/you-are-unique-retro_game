@@ -12,9 +12,9 @@ var llevel = Array();
 // llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 3 0 3 0 0 3 0 3 1 7 0 0 0 0 0 0 0 0 5 1 3 0 3 0 0 3 0 3 1 1 1 1 1 1 1 1 1 1 1 "});
 // llevel.push({ width: 10, height: 5, layer0: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 7 0 0 3 0 0 0 0 0 5 1 0 0 0 0 0 3 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
 
-llevel.push({ width: 10, height: 10, layer0: "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 15 15 15 15 15 15 15 15 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 10 10 10 10 10 10 10 10 10 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 7 0 0 0 0 0 0 0 0 5 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
-llevel.push({ width: 10, height: 10, layer0: "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 12 12 11 15 15 15 15 15 10 10 14 14 12 15 15 15 15 15 10 10 15 15 12 12 12 11 15 15 10 10 15 15 11 12 12 12 15 15 10 10 15 15 14 14 14 12 15 15 10 10 15 15 15 15 15 11 12 12 10 10 15 15 15 15 15 14 14 14 10 10 10 10 10 10 10 10 10 10 10 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 7 0 0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 "});
-// llevel.push();
+//llevel.push({ width: 10, height: 10, layer0: "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 15 15 15 15 15 15 15 15 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 10 10 10 10 10 10 10 10 10 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 7 0 0 0 0 0 0 0 0 5 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
+//llevel.push({ width: 10, height: 10, layer0: "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 12 12 11 15 15 15 15 15 10 10 14 14 12 15 15 15 15 15 10 10 15 15 12 12 12 11 15 15 10 10 15 15 11 12 12 12 15 15 10 10 15 15 14 14 14 12 15 15 10 10 15 15 15 15 15 11 12 12 10 10 15 15 15 15 15 14 14 14 10 10 10 10 10 10 10 10 10 10 10 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 7 0 0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 "});
+llevel.push({ "width": 10, "height": 10, "layer0": "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 15 15 15 15 15 15 15 15 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 10 10 10 10 10 10 10 10 10 ", "layer1": "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 7 0 0 0 0 0 0 0 0 5 1 0 0 0 0 0 0 0 0 1 1 0 8 0 0 0 0 8 0 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
 // llevel.push();
 // llevel.push();
 // llevel.push();
@@ -194,6 +194,7 @@ function loadnewlevel(level)
     var leveldoors = Array();
     var levelbackgroundTiles = Array();
     var levelentities = Array();
+    var levelMobs = Array();
 
     
 
@@ -276,14 +277,15 @@ function loadnewlevel(level)
             if(tile == "8")
             {
                 //enemy spawn...
-                var mob = new mob(pos.x, pos.y);
+                var monster = new mob(pos.x, pos.y);
+                levelMobs.push(monster);
             }
         }
     }
 
     console.log("level loaded!");
     //reload le level fait bug les projectiles
-    var level = {"walls": levelwalls, "doors": leveldoors, "tiles": levelbackgroundTiles, "entities": levelentities };
+    var level = {"walls": levelwalls, "doors": leveldoors, "tiles": levelbackgroundTiles, "entities": levelentities, "mobs": levelMobs };
     return level;
 
 }
@@ -391,4 +393,5 @@ function enableRoom(levelData, enabled)
     levelData['tiles'].forEach(element => element.setEnabled(enabled));
     levelData['doors'].forEach(element => element[1].setEnabled(enabled));
     levelData['entities'].forEach(element => element.setEnabled(enabled));
+    levelData['mobs'].forEach(element => element.gameobject.setEnabled(enabled));
 }

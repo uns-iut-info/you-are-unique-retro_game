@@ -128,9 +128,9 @@ var createScene = function () {
 
 
     //add a test mob
-    var targets = Array();
-    targets.push(new mob(-4,4));
-    targets.push(new blob(4,-4));
+    // var targets = Array();
+    // targets.push(new mob(-4,4));
+    // targets.push(new blob(4,-4));
 
     createCollectible(new collectible(0, 2))
 
@@ -138,27 +138,43 @@ var createScene = function () {
     scene.registerAfterRender(function(){
 
         updatePlayer(map);
-        targets.forEach(target => { target.update(player) });
+        //targets.forEach(target => { target.update(player) });
+
+        //update map
+        let levelmobs = dj[currentdjRoom]["mobs"];
+        levelmobs.forEach(element => element.update(player));
 
 
         //move this later in the player update function
         for(let i=0;i<projs.length;i++)
         {
-            projs[i].update();
+            let currentProjectile = projs[i];
+            currentProjectile.update();
 
             //check projectiles collisions with walls
             for(let j=0;j<walls.length;j++)
             {
-                if(projs[i].boxCollider.intersectsMesh(walls[j], false))
-                    projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Red();    
+                if(currentProjectile.boxCollider.intersectsMesh(walls[j], false))
+                currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Red();    
             }
-            for (let target of targets){
-                if(!projs[i].used && !target.dead && projs[i].boxCollider.intersectsMesh(target.gameobject, false))
+            // for (var target of levelmobs){
+            //     if(!projs[i].used && !target.dead && projs[i].boxCollider.intersectsMesh(target.gameobject, false))
+            //     {
+            //         projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
+            //         target.takeDamage(1);
+            //         projs[i].used = true;
+            //         console.log("hit " + target.gameobject);
+            //     }
+            // }
+            for(let e=0;e<levelmobs.length;e++)
+            {
+                let target = levelmobs[e];
+                if(!currentProjectile.used && !target.dead && currentProjectile.boxCollider.intersectsMesh(target.gameobject, false))
                 {
-                    projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
+                    currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Green();
                     target.takeDamage(1);
-                    projs[i].used = true;
-                    console.log("hit");
+                    currentProjectile.used = true;
+                    console.log("hit " + target.gameobject);
                 }
             }
         }
