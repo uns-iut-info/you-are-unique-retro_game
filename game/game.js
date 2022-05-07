@@ -134,10 +134,15 @@ var createScene = function () {
             currentProjectile.update();
 
             //check projectiles collisions with walls
+            let walls = dj[currentdjRoom]["walls"];
             for(let j=0;j<walls.length;j++)
             {
                 if(currentProjectile.boxCollider.intersectsMesh(walls[j], false))
-                currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Red();    
+                {
+                    currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Red();
+                    hideProjectile(currentProjectile); 
+                }
+                       
             }
             // for (var target of levelmobs){
             //     if(!projs[i].used && !target.dead && projs[i].boxCollider.intersectsMesh(target.gameobject, false))

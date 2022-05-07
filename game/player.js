@@ -102,6 +102,11 @@ function updatePlayer(map)
                 }
             }
 
+            //on room enter
+            //clear projectiles
+            projs.forEach(elem => elem.destroy());
+            projs = Array();
+
             console.log("go to room" + currentdjRoom);
             
             break;
@@ -123,6 +128,11 @@ function playerTakeDamage(dmg)
     }
         
     updateHealthUI();
+}
+
+function hideProjectile(p)
+{
+    p.hide();
 }
 
 function createGUI()

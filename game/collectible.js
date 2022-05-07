@@ -38,4 +38,5 @@ function createCollectible(collectible)
 function removeCollectible(c)
 {
     c.gameobject.dispose();
+    collectibles.splice(collectibles.indexOf(c), 1);
 }

@@ -40,4 +40,16 @@ class projectile
 
         this.boxCollider.position = this.gameobject.position;
     }
+
+    destroy()
+    {
+        this.gameobject.dispose();
+        this.boxCollider.dispose();
+    }
+
+    hide()
+    {
+        this.used = true;
+        this.gameobject.isVisible = false;
+    }
 }
