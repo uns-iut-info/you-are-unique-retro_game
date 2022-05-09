@@ -192,10 +192,10 @@ function loadnewlevel(level)
             }
         }
     }
-
+    
     console.log("level loaded!");
     //reload le level fait bug les projectiles
-    var level = {"walls": levelwalls, "doors": leveldoors, "tiles": levelbackgroundTiles, "entities": levelentities, "mobs": levelMobs };
+    var level = {"walls": levelwalls, "doors": leveldoors, "tiles": levelbackgroundTiles, "entities": levelentities, "mobs": levelMobs, "collectibles": Array() };
     return level;
 
 }

@@ -45,6 +45,9 @@ class mob
         {
             this.dead = true;
             this.gameobject.isVisible = false;
+
+            let drop = new collectible(this.gameobject.position.x, this.gameobject.position.y);
+            createCollectibles(drop);
         }
             
     }

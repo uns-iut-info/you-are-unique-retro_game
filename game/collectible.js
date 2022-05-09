@@ -2,6 +2,7 @@ class collectible
 {
     constructor(posx, posy)
     {
+        this.collected = false;
         this.gameobject = BABYLON.MeshBuilder.CreatePlane("collectible", {width:0.5, height:0.5}, scene);
         this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.2);
 
@@ -15,28 +16,41 @@ class collectible
 
     update(player)
     {
+        if(this.collected)
+            return;
+
         let distance = BABYLON.Vector3.Distance(this.gameobject.position, player.position);
 
         if(distance < 0.5)
         {
             //player pickup item
             //play a sound
-            //remove item from the list
             console.log("pickup collectible!");
-            removeCollectible(this);
+            this.collected = true;
+            this.gameobject.setEnabled(false);
         }
     }
 }
 
-var collectibles = Array();
-
-function createCollectible(collectible) 
+function createCollectibles(collectible)
 {
-    collectibles.push(collectible);
+    dj[currentdjRoom]["collectibles"].push(collectible);
 }
 
-function removeCollectible(c)
+function updateCollectibles()
 {
-    c.gameobject.dispose();
-    collectibles.splice(collectibles.indexOf(c), 1);
+    dj[currentdjRoom]["collectibles"].forEach(c => c.update(player));
+}
+
+function enableCollectibles()
+{
+    dj[currentdjRoom]["collectibles"].forEach(element => {
+        if(element.collected == false)
+            element.gameobject.setEnabled(true)
+    });
+}
+
+function disableCollectibles()
+{
+    dj[currentdjRoom]["collectibles"].forEach(element => element.gameobject.setEnabled(false));
 }

@@ -76,11 +76,13 @@ function updatePlayer(map)
         if(BABYLON.Vector3.Distance(dj[currentdjRoom]['doors'][i][1].position, player.position) < 0.5)
         {
             console.log("throw the door");
-            
+            //disable last room elements
             enableRoom(dj[currentdjRoom], false);
+            disableCollectibles();
             let lastDoorValue = dj[currentdjRoom]['doors'][i][2];
             currentdjRoom += lastDoorValue;
             enableRoom(dj[currentdjRoom], true);
+            enableCollectibles();
 
             //search the next door to teleport 
             for(let j=0;j<dj[currentdjRoom]['doors'].length;j++)
