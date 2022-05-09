@@ -14,7 +14,7 @@ var llevel = Array();
 
 //llevel.push({ width: 10, height: 10, layer0: "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 15 15 15 15 15 15 15 15 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 10 10 10 10 10 10 10 10 10 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 7 0 0 0 0 0 0 0 0 5 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
 //llevel.push({ width: 10, height: 10, layer0: "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 12 12 11 15 15 15 15 15 10 10 14 14 12 15 15 15 15 15 10 10 15 15 12 12 12 11 15 15 10 10 15 15 11 12 12 12 15 15 10 10 15 15 14 14 14 12 15 15 10 10 15 15 15 15 15 11 12 12 10 10 15 15 15 15 15 14 14 14 10 10 10 10 10 10 10 10 10 10 10 ", layer1: "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 7 0 0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 "});
-llevel.push({ "width": 10, "height": 10, "layer0": "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 15 15 15 15 15 15 15 15 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 10 10 10 10 10 10 10 10 10 ", "layer1": "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 7 0 0 0 0 0 0 0 0 5 1 0 0 0 0 0 0 0 0 1 1 0 8 0 0 0 0 8 0 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
+llevel.push({ "width": 10, "height": 10, "layer0": "10 10 10 10 10 10 10 10 10 10 10 14 14 14 14 14 14 14 14 10 10 15 15 15 15 15 15 15 15 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 12 12 12 12 12 12 12 10 10 12 11 12 12 12 12 11 12 10 10 12 12 12 12 12 12 12 12 10 10 10 10 10 10 10 10 10 10 10 ", "layer1": "1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 7 0 0 0 0 0 0 0 0 5 1 0 0 0 0 0 0 0 0 1 1 0 8 0 0 0 0 8 0 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 "});
 // llevel.push();
 // llevel.push();
 // llevel.push();
@@ -84,97 +84,6 @@ var entities = Array();
 var currentdjRoom = 0;
 var dj = Array();
 
-// function loadlevel(level)
-// {
-//     var level_tab = level["layer0"].split(' ');
-
-//     var level_h = level.height;
-//     var level_w = level.width;
-
-//     var x_offset = level.width/2;
-//     var y_offset = level.height/2;
-
-//     walls.forEach(e => e.dispose());
-//     doors.forEach(e => e.dispose());
-//     backgroundTiles.forEach(e => e.dispose());
-//     entities.forEach(e => e.dispose());
-    
-//     walls = Array();
-//     doors = Array();
-//     backgroundTiles = Array();
-//     entities = Array();
-
-//     // first layer
-//     for(let h = 0; h < level_h; h++)
-//     {
-//         for(let w = 0; w < level_w; w++)
-//         {
-//             var tile = level_tab[w + h*level_w];
-//             var pos = new BABYLON.Vector3(w - x_offset, (level_h - h) - y_offset, 0);
-//             if(tile == "1")
-//                 backgroundTiles.push(instantiateTile(originalBlockList[0], pos));
-//             if(tile == "2")
-//                 backgroundTiles.push(instantiateTile(originalBlockList[1], pos));
-//         }
-//     }
-
-//     var level_entities = level["layer1"].split(' ');
-
-//     // entity layer
-//     for(let h = 0; h < level_h; h++)
-//     {
-//         for(let w = 0; w < level_w; w++)
-//         {
-//             var tile = level_entities[w + h*level_w];
-//             var pos = new BABYLON.Vector3(w - x_offset, (level_h - h) - y_offset, 0);
-
-//             if(tile == "1") //boxwall
-//                 walls.push(instantiateBlock(pos));
-
-//             if(tile == "2")
-//             {
-//                 entities.push(instantiateTile(originalEntityFall, pos));
-//                 entities.push(instantiateBlock(pos));
-//             }
-//             if(tile == "3")
-//             {
-//                 entities.push(instantiateTile(originalEntityRock, pos));
-//                 entities.push(instantiateBlock(pos));
-//             }
-                
-//             if(tile == "4")
-//             {
-//                 var door = instantiateTile(originalEntityDoor, pos)
-//                 //entities.push(door);
-//                 doors.push(["n",door]);
-//             }
-//             if(tile == "5")
-//             {
-//                 var door = instantiateTile(originalEntityDoor, pos)
-//                 //entities.push(door);
-//                 doors.push(["e",door]);
-//             }
-//             if(tile == "6")
-//             {
-//                 var door = instantiateTile(originalEntityDoor, pos)
-//                 //entities.push(door);
-//                 doors.push(["s",door]);
-//             }
-//             if(tile == "7")
-//             {
-//                 var door = instantiateTile(originalEntityDoor, pos)
-//                 //entities.push(door);
-//                 doors.push(["o",door]);
-//             }
-                
-            
-//         }
-//     }
-
-//     console.log("level loaded!");
-//     //reload le level fait bug les projectiles
-// }
-
 function loadnewlevel(level)
 {
     var level_tab = level["layer0"].split(' ');
@@ -241,7 +150,8 @@ function loadnewlevel(level)
 
             if(tile == "2")
             {
-                levelentities.push(instantiateTile(originalEntityFall, pos));
+                //you cant walk on a wall but projectile can go through
+                //levelentities.push(instantiateTile(originalEntityFall, pos));
                 levelentities.push(instantiateBlock(pos));
             }
             if(tile == "3")
