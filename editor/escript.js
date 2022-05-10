@@ -177,12 +177,12 @@ function loadMap()
             let index = block[elem];
             console.log("id : "+elem);
             let id = colonne + "-" + ligne;
-            let onclick = "updateBlock('"+ id+ "')";
+            let onclick = "updateBlock('"+id+"');updateEntity('"+ id+ "')";
             tablehtml += "<td id="+ id + " onclick=" + onclick +"><img id='img"+id+"' src='"+index+"' width='64' height='64'></td>";
         }
         tablehtml += "</tr>";
     }
-    tablehtml += "</table>";
+    tablehtml += "</table><br><br>";
     tablehtml += "<table>";
 
 //layer1
@@ -192,8 +192,8 @@ function loadMap()
             let index = entity[elem];
             console.log(index);
             let id = colonne + "-" + ligne;
-            let onclick = "updateBlock('"+ id+ "')";
-            tablehtml += "<td id="+ id + " onclick=" + onclick +"><img id='eimg"+id+"' src='"+index+"' width='64' height='64'></td>";
+            let onclick = "updateEntity('"+ id+ "')";
+            tablehtml += "<td id="+ "e"+id + " onclick=" + onclick +"><img id='eimg"+id+"' src='"+index+"' width='64' height='64'></td>";
         }
         tablehtml += "</tr>";
     }
