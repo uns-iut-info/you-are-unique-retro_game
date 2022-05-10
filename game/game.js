@@ -58,7 +58,7 @@ var createScene = function () {
 
     // ------ audio -------
     BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
-    var music_castle = new BABYLON.Sound("Music", "castle_music.mp3", scene, null, {loop: true, autoplay: true});
+    var music_castle = new BABYLON.Sound("Music", "./media/castle_music.mp3", scene, null, {loop: true, autoplay: true});
 
     var currentMusic = music_castle;
     currentMusic.play();
@@ -125,45 +125,8 @@ var createScene = function () {
         levelmobs.forEach(element => element.update(player));
         updateCollectibles();
 
+        updateProjectiles(projs, levelmobs);
 
-        //move this later in the player update function
-        for(let i=0;i<projs.length;i++)
-        {
-            let currentProjectile = projs[i];
-            currentProjectile.update();
-
-            //check projectiles collisions with walls
-            let walls = dj[currentdjRoom]["walls"];
-            for(let j=0;j<walls.length;j++)
-            {
-                if(currentProjectile.boxCollider.intersectsMesh(walls[j], false))
-                {
-                    currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Red();
-                    hideProjectile(currentProjectile); 
-                }
-                       
-            }
-            // for (var target of levelmobs){
-            //     if(!projs[i].used && !target.dead && projs[i].boxCollider.intersectsMesh(target.gameobject, false))
-            //     {
-            //         projs[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
-            //         target.takeDamage(1);
-            //         projs[i].used = true;
-            //         console.log("hit " + target.gameobject);
-            //     }
-            // }
-            for(let e=0;e<levelmobs.length;e++)
-            {
-                let target = levelmobs[e];
-                if(!currentProjectile.used && !target.dead && currentProjectile.boxCollider.intersectsMesh(target.gameobject, false))
-                {
-                    currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Green();
-                    target.takeDamage(1);
-                    currentProjectile.used = true;
-                    console.log("hit " + target.gameobject);
-                }
-            }
-        }
     })
 
     //look at room center

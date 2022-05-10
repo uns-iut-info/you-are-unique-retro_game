@@ -26,7 +26,7 @@ class projectile
 
     update()
     {
-        var speed = 0.006;
+        let speed = 0.006;
         let deltatime = engine.getDeltaTime();
 
         if(this.dir == 0)
