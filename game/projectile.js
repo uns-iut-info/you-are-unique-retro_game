@@ -18,9 +18,14 @@ class projectile
         var newmat = new BABYLON.StandardMaterial("noLight", scene);
         newmat.disableLighting = true;
         newmat.emissiveColor = BABYLON.Color3.White();
-        newmat.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/3b/Fire_Charge_JE2_BE2.png", scene);
+        newmat.diffuseTexture = new BABYLON.Texture("./media/magic.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
         newmat.diffuseTexture.hasAlpha = true;
-
+        if(this.dir == 0)
+            newmat.diffuseTexture.wAng = -Math.PI/2;
+        if(this.dir == 2)
+            newmat.diffuseTexture.wAng = Math.PI/2;
+        if(this.dir == 3)
+            newmat.diffuseTexture.wAng = Math.PI;
         this.gameobject.material = newmat;
     }
 
