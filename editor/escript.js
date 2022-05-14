@@ -4,7 +4,7 @@ var height;
 var selectedBlock=0;
 var selectedEntity=0;
 
-var block = ["empty.png", "bricks.png", "ground.png", "x", "x", "x", "x", "x", "x", "rockground.png", "bricksold.png", "dallerec.png", "dalle.png", "dirt.png", "waterborder.png", "water.png", "x", "dirtblock.png", "dirtgrounda.png", "dirtgroundb.png"];
+var block = ["empty.png", "bricks.png", "ground.png", "x", "x", "x", "x", "x", "x", "rockg.png", "bricksold.png", "dallerec.png", "dalle.png", "dirt.png", "waterborder.png", "water.png", "x", "dirtblock.png", "dirtgrounda.png", "dirtgroundb.png"];
 var entity = ["empty.png", "wall_entity.png", "fall.png", "rock.png", "door.png", "door_east.png", "door_south.png", "door_west.png", "enemy_spawn.png"];
 /*var exit = "resources/editor/exit.png";
 var poro = "resources/editor/poro_editor.png";
