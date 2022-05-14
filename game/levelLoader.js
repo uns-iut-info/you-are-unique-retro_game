@@ -36,7 +36,7 @@ var originalBoxCollider;
 function initLevelLoader(scene)
 {
     //first load the atlas texture
-    var atlas = new BABYLON.Texture("atlas.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    var atlas = new BABYLON.Texture("./media/atlas.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
 
     //define default material for tiles
     var tileMaterial = new BABYLON.StandardMaterial("noLight", scene);
@@ -294,6 +294,7 @@ function generateDungeon()
     //boss room
     var endlevelData = loadnewlevel(bossRoom);
     endlevelData['doors'][0][2] = -1;
+    endlevelData["mobs"].push(new boss(0,0));
     dungeonLayout.push(endlevelData);
 
     enableRoom(endlevelData, false);

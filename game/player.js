@@ -23,7 +23,7 @@ function createPlayer()
     player.material.disableLighting = true;
     player.material.emissiveColor = BABYLON.Color3.White();
     //player.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/e/e5/Character_Isaac_appearance.png", scene);
-    player.material.diffuseTexture = new BABYLON.Texture("player_icon.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    player.material.diffuseTexture = new BABYLON.Texture("./media/player_icon.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
 
     player.material.diffuseTexture.hasAlpha = true;
 }
@@ -153,13 +153,13 @@ function createGUI()
     grid.left = "250px";
     advancedTexture.addControl(grid);
 
-    image1 = new BABYLON.GUI.Image("heart1", "heart.png");
+    image1 = new BABYLON.GUI.Image("heart1", "./media/heart.png");
     image1.width = "100px";
     image1.height = "100px";
-    image2 = new BABYLON.GUI.Image("heart2", "heart.png");
+    image2 = new BABYLON.GUI.Image("heart2", "./media/heart.png");
     image2.width = "100px";
     image2.height = "100px";
-    image3 = new BABYLON.GUI.Image("heart3", "heart.png");
+    image3 = new BABYLON.GUI.Image("heart3", "./media/heart.png");
     image3.width = "100px";
     image3.height = "100px";
     grid.addControl(image1, 0, 0);
@@ -181,4 +181,58 @@ function updateHealthUI()
         grid.addControl(image2, 0, 1);
     if(playerHealth > 4)
         grid.addControl(image3, 0, 2);
+}
+
+function updateProjectiles(projectiles, targets){
+    //move this later in the player update function
+    for(let i=0;i<projectiles.length;i++)
+    {
+        let currentProjectile = projectiles[i];
+        currentProjectile.update();
+
+        //check projectiles collisions with walls
+        let walls = dj[currentdjRoom]["walls"];
+        for(let j=0;j<walls.length;j++)
+        {
+            if(currentProjectile.boxCollider.intersectsMesh(walls[j], false))
+            {
+                currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Red();
+                hideProjectile(currentProjectile); 
+            }
+                    
+        }
+        // for (var target of levelmobs){
+        //     if(!projectiles[i].used && !target.dead && projectiles[i].boxCollider.intersectsMesh(target.gameobject, false))
+        //     {
+        //         projectiles[i].gameobject.material.emissiveColor = new BABYLON.Color3.Green();
+        //         target.takeDamage(1);
+        //         projectiles[i].used = true;
+        //         console.log("hit " + target.gameobject);
+        //     }
+        // }
+        if (targets.length != 0 && targets[0]==player){
+            let target = player;
+            if(!currentProjectile.used && currentProjectile.boxCollider.intersectsMesh(target, false))
+            {
+                currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Green();
+                playerTakeDamage(1);
+                currentProjectile.used = true;
+                console.log("hit " + target.gameobject);
+            }
+        }
+        else{
+            for(let e=0;e<targets.length;e++)
+            {
+                let target = targets[e];
+                if(!currentProjectile.used && !target.dead && currentProjectile.boxCollider.intersectsMesh(target.gameobject, false))
+                {
+                    currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Green();
+                    target.takeDamage(1);
+                    currentProjectile.used = true;
+                    console.log("hit " + target.gameobject);
+                }
+            }
+        }
+
+    }
 }
