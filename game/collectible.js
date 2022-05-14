@@ -1,3 +1,4 @@
+
 class collectible
 {
     constructor(posx, posy)
@@ -12,6 +13,8 @@ class collectible
         newmat.diffuseTexture = new BABYLON.Texture("./media/coin.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
         newmat.diffuseTexture.hasAlpha = true;
         this.gameobject.material = newmat;
+        
+        this.coin_sound = new BABYLON.Sound("coin_sound", "./media/rupee_sound.mp3", scene);
     }
 
     update(player)
@@ -25,6 +28,7 @@ class collectible
         {
             //player pickup item
             //play a sound
+            this.coin_sound.play();
             console.log("pickup collectible!");
             this.collected = true;
             this.gameobject.setEnabled(false);
@@ -54,3 +58,5 @@ function disableCollectibles()
 {
     dj[currentdjRoom]["collectibles"].forEach(element => element.gameobject.setEnabled(false));
 }
+
+

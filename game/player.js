@@ -24,7 +24,7 @@ function createPlayer()
     player.material.emissiveColor = BABYLON.Color3.White();
     //player.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/e/e5/Character_Isaac_appearance.png", scene);
     //player.material.diffuseTexture = new BABYLON.Texture("./media/player_icon2.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    player.material.diffuseTexture = new BABYLON.Texture("./media/magicienne.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    player.material.diffuseTexture = new BABYLON.Texture("./media/magicien.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     player.material.diffuseTexture.hasAlpha = true;
 }
 

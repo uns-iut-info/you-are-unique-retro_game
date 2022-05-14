@@ -10,7 +10,7 @@ class boss extends ennemy
         var newmat = new BABYLON.StandardMaterial("noLight", scene);
         newmat.disableLighting = true;
         newmat.emissiveColor = BABYLON.Color3.White();
-        newmat.diffuseTexture = new BABYLON.Texture("../media/boss.png", scene);    
+        newmat.diffuseTexture = new BABYLON.Texture("./media/boss_1.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);    
         newmat.diffuseTexture.hasAlpha = true;
         this.gameobject.material = newmat;
         this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.3);
@@ -57,6 +57,22 @@ class boss extends ennemy
         super.update(player);
         updateProjectiles(this.projectiles, [player]);
 
+    }
+
+    takeDamage(dmg)
+    {
+        this.health -= dmg;
+        if(this.health <= 0)
+        {
+            this.dead = true;
+            this.gameobject.isVisible = false;
+
+            this.projectiles.forEach(elem => elem.destroy());
+
+            let drop = new collectible(this.gameobject.position.x, this.gameobject.position.y);
+            createCollectibles(drop);
+        }
+            
     }
 
 }
