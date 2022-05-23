@@ -14,6 +14,8 @@ var image2;
 var image3;
 
 var deadText;
+var reviveText;
+var deathUI;
 
 function createPlayer()
 {
@@ -36,7 +38,7 @@ function resetPlayer()
     playerHealth = playerMaxHealth;
     playerDead = false;
 
-    deadText.text = "";
+    deathUI.alpha = 0;
     updateHealthUI();
 }
 
@@ -149,7 +151,7 @@ function playerTakeDamage(dmg)
     {
         playerDead = true;
         console.log("player is dead");
-        deadText.text = "You're dead !";
+        deathUI.alpha = 1;
     }
         
     updateHealthUI();
@@ -166,7 +168,8 @@ function createGUI()
     var planeGUI = BABYLON.MeshBuilder.CreatePlane("planeGUI", {size:10}, scene);
     planeGUI.position.y = 1.5;
     planeGUI.position.x = -1;
-    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(planeGUI);
+    //var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(planeGUI);
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI", true);
 
     grid = new BABYLON.GUI.Grid();
     grid.addColumnDefinition("100px", true);
@@ -190,11 +193,23 @@ function createGUI()
     grid.addControl(image3, 0, 2);
     //grid.removeControl(image3); //Remove last Heart
 
+    deathUI = new BABYLON.GUI.Rectangle();
+    deathUI.thickness = 0;
+    deathUI.alpha = 0;
+
     deadText = new BABYLON.GUI.TextBlock();
-    deadText.text = "";
+    deadText.text = "You're dead !";
     deadText.color = "red";
     deadText.fontSize = 128;
-    advancedTexture.addControl(deadText);
+    deathUI.addControl(deadText);
+
+    reviveText = new BABYLON.GUI.TextBlock();
+    reviveText.text = "press r to restart"
+    reviveText.color = "white";
+    reviveText.fontSize = 48;
+    reviveText.top = "10%";
+    deathUI.addControl(reviveText);
+    advancedTexture.addControl(deathUI);
 }
 
 // call to update player hearth
