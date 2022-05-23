@@ -13,6 +13,8 @@ var image1;
 var image2;
 var image3;
 
+var deadText;
+
 function createPlayer()
 {
     player = BABYLON.CreatePlane("player", {width:1, height:1}, scene);
@@ -28,8 +30,28 @@ function createPlayer()
     player.material.diffuseTexture.hasAlpha = true;
 }
 
+function resetPlayer()
+{
+    player.position = new BABYLON.Vector3(0, 0, -0.3);
+    playerHealth = playerMaxHealth;
+    playerDead = false;
+
+    deadText.text = "";
+    updateHealthUI();
+}
+
 function updatePlayer(map)
 {
+    if(playerDead)
+    {
+        if(map["r"]) // press r for revive
+        {
+            //restart game
+            restart();
+        }
+        return;
+    }
+
     //movement
     var xdep=0;
     var ydep=0;
@@ -127,6 +149,7 @@ function playerTakeDamage(dmg)
     {
         playerDead = true;
         console.log("player is dead");
+        deadText.text = "You're dead !";
     }
         
     updateHealthUI();
@@ -166,6 +189,12 @@ function createGUI()
     grid.addControl(image2, 0, 1);
     grid.addControl(image3, 0, 2);
     //grid.removeControl(image3); //Remove last Heart
+
+    deadText = new BABYLON.GUI.TextBlock();
+    deadText.text = "";
+    deadText.color = "red";
+    deadText.fontSize = 128;
+    advancedTexture.addControl(deadText);
 }
 
 // call to update player hearth
@@ -218,6 +247,7 @@ function updateProjectiles(projectiles, targets){
                 playerTakeDamage(1);
                 currentProjectile.used = true;
                 console.log("hit " + target.gameobject);
+                currentProjectile.hide();
             }
         }
         else{

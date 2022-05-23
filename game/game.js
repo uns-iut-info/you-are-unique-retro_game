@@ -139,3 +139,14 @@ var createScene = function () {
     
     return scene;
 };
+
+function restart()
+{
+    //level
+    clearDungeon(dj);
+    dj = generateDungeon();
+    currentdjRoom = 0;
+
+    //player
+    resetPlayer();
+}

@@ -313,3 +313,14 @@ function enableRoom(levelData, enabled)
     levelData['entities'].forEach(element => element.setEnabled(enabled));
     levelData['mobs'].forEach(element => element.gameobject.setEnabled(enabled));
 }
+
+function clearDungeon(dj)
+{
+    dj.forEach(room => {
+        room['walls'].forEach(e => e.dispose());
+        room['tiles'].forEach(e => e.dispose());
+        room['doors'].forEach(e => e[1].dispose());
+        room['entities'].forEach(e => e.dispose());
+        room['mobs'].forEach(e => e.destroy());
+    });
+}

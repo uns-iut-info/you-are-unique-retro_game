@@ -48,4 +48,9 @@ class ennemy
         }
             
     }
+
+    destroy()
+    {
+        this.gameobject.dispose();
+    }
 }

@@ -61,6 +61,9 @@ class boss extends ennemy
 
     takeDamage(dmg)
     {
+        if(this.dead)
+            return;
+            
         this.health -= dmg;
         if(this.health <= 0)
         {
