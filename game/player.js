@@ -17,6 +17,8 @@ var deadText;
 var reviveText;
 var deathUI;
 
+var finishLevelPanel;
+
 function createPlayer()
 {
     player = BABYLON.CreatePlane("player", {width:1, height:1}, scene);
@@ -52,6 +54,11 @@ function updatePlayer(map)
             restart();
         }
         return;
+    }
+
+    if(djBossDefeat && map["Enter"])
+    {
+        restart();
     }
 
     //movement
@@ -210,6 +217,25 @@ function createGUI()
     reviveText.top = "10%";
     deathUI.addControl(reviveText);
     advancedTexture.addControl(deathUI);
+
+    finishLevelPanel = new BABYLON.GUI.Rectangle();
+    finishLevelPanel.thickness = 0;
+    finishLevelPanel.alpha = 0;
+
+    var finishLevelText = new BABYLON.GUI.TextBlock();
+    finishLevelText.text = "Boss defeated !";
+    finishLevelText.color = "orange";
+    finishLevelText.fontSize = 100;
+    finishLevelPanel.addControl(finishLevelText);
+
+    var goToNextLevelText = new BABYLON.GUI.TextBlock();
+    goToNextLevelText.text = "press enter to go to the next level";
+    goToNextLevelText.color = "white";
+    goToNextLevelText.fontSize = 48;
+    goToNextLevelText.top = "10%";
+    finishLevelPanel.addControl(goToNextLevelText);
+
+    advancedTexture.addControl(finishLevelPanel);
 }
 
 // call to update player hearth

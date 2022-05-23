@@ -143,6 +143,8 @@ var createScene = function () {
 function restart()
 {
     //level
+    finishLevelPanel.alpha = 0;
+    djBossDefeat = false;
     clearDungeon(dj);
     dj = generateDungeon();
     currentdjRoom = 0;

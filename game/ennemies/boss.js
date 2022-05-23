@@ -25,6 +25,7 @@ class boss extends ennemy
     {
         if(this.dead)
             return;
+            
         let deltatime = engine.getDeltaTime();
         let dir = player.position.subtract(this.gameobject.position).normalize();
         dir = dir.scale(0.02);
@@ -63,7 +64,7 @@ class boss extends ennemy
     {
         if(this.dead)
             return;
-            
+
         this.health -= dmg;
         if(this.health <= 0)
         {
@@ -74,6 +75,9 @@ class boss extends ennemy
 
             let drop = new collectible(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
+
+            djBossDefeat = true;
+            finishLevelPanel.alpha = 1;
         }
             
     }
