@@ -152,3 +152,17 @@ function restart()
     //player
     resetPlayer();
 }
+
+function nextLevel()
+{
+    levelCount++;
+    finishLevelPanel.alpha = 0;
+    djBossDefeat = false;
+    clearDungeon(dj);
+    dj = generateDungeon();
+    currentdjRoom = 0;
+
+    console.log("level " + levelCount + " !");
+    //player
+    player.position = new BABYLON.Vector3(0, 0, -0.3);
+}

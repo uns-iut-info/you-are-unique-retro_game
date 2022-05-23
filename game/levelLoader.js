@@ -85,6 +85,7 @@ var entities = Array();
 var currentdjRoom = 0;
 var dj = Array();
 var djBossDefeat = false;
+var levelCount = 1;
 
 function loadnewlevel(level)
 {

@@ -58,7 +58,7 @@ function updatePlayer(map)
 
     if(djBossDefeat && map["Enter"])
     {
-        restart();
+        nextLevel();
     }
 
     //movement
