@@ -1,3 +1,7 @@
+var music_castle;
+var music_cave;
+var currentMusic;
+
 var createScene = function () {
     // This creates a basic Babylon Scene object (non-mesh)
     var scene = new BABYLON.Scene(engine);
@@ -58,9 +62,10 @@ var createScene = function () {
 
     // ------ audio -------
     BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
-    var music_castle = new BABYLON.Sound("Music", "./media/castle_music.mp3", scene, null, {loop: true, autoplay: true});
+    music_castle = new BABYLON.Sound("Music", "./media/castle_music.mp3", scene, null, {loop: true, autoplay: true});
+    music_cave = new BABYLON.Sound("Music2", "./media/lvl2_music.mp3", scene, null, {loop: true});
 
-    var currentMusic = music_castle;
+    currentMusic = music_castle;
     currentMusic.play();
 
     // ------ gui -------
@@ -140,6 +145,8 @@ var createScene = function () {
     return scene;
 };
 
+
+
 function restart()
 {
     //level
@@ -151,6 +158,10 @@ function restart()
 
     //player
     resetPlayer();
+
+    currentMusic.stop();
+    currentMusic = music_castle;
+    currentMusic.play();
 }
 
 function nextLevel()
@@ -165,4 +176,11 @@ function nextLevel()
     console.log("level " + levelCount + " !");
     //player
     player.position = new BABYLON.Vector3(0, 0, -0.3);
+
+    if(levelCount == 2)
+    {
+        currentMusic.stop();
+        currentMusic = music_cave;
+        currentMusic.play();
+    }
 }
