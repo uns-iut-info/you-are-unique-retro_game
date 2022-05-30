@@ -34,6 +34,12 @@ class collectible
             this.gameobject.setEnabled(false);
         }
     }
+
+    destroy()
+    {
+        this.gameobject.dispose();
+        this.coin_sound.dispose();
+    }
 }
 
 function createCollectibles(collectible)

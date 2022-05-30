@@ -252,7 +252,7 @@ function createGUI()
 // call to update player hearth
 function updateHealthUI()
 {
-    healthImageList.forEach(h => { h.alpha = 0;});
+    healthImageList.forEach(h => h.alpha = 0);
 
     for(let i = 0; i<playerHealth;i++)
     {

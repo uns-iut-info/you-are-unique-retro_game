@@ -334,5 +334,6 @@ function clearDungeon(dj)
         room['doors'].forEach(e => e[1].dispose());
         room['entities'].forEach(e => e.dispose());
         room['mobs'].forEach(e => e.destroy());
+        room["collectibles"].forEach(e => e.destroy());
     });
 }
