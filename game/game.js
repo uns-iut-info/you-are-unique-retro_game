@@ -150,12 +150,13 @@ var createScene = function () {
 function restart()
 {
     //level
+    levelCount = 1;
     finishLevelPanel.alpha = 0;
     djBossDefeat = false;
     clearDungeon(dj);
     dj = generateDungeon();
     currentdjRoom = 0;
-
+    levelText.text = "Level 1";
     //player
     resetPlayer();
 
@@ -174,6 +175,7 @@ function nextLevel()
     currentdjRoom = 0;
 
     console.log("level " + levelCount + " !");
+    levelText.text = "Level " + levelCount;
     //player
     player.position = new BABYLON.Vector3(0, 0, -0.3);
 

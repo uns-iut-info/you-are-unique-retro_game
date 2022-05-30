@@ -9,10 +9,8 @@ var fireTimer = Date.now();
 var fireDelay = 200;
 
 var grid;
-var image1;
-var image2;
-var image3;
-
+var healthImageList = Array();
+var levelText;
 var deadText;
 var reviveText;
 var deathUI;
@@ -179,26 +177,35 @@ function createGUI()
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI", true);
 
     grid = new BABYLON.GUI.Grid();
-    grid.addColumnDefinition("100px", true);
-    grid.addColumnDefinition("100px", true);
-    grid.addColumnDefinition("300px", true);
-    grid.top = "-450px";
-    grid.left = "250px";
+    grid.top = "0px";
+    grid.left = "150px";
+    grid.addColumnDefinition("50px", true);
+    grid.addColumnDefinition("50px", true);
+    grid.addColumnDefinition("150px", true);
+    grid.addColumnDefinition("250px", true);
+    grid.addColumnDefinition("350px", true);
+    grid.addColumnDefinition("450px", true);
+    
     advancedTexture.addControl(grid);
 
-    image1 = new BABYLON.GUI.Image("heart1", "./media/heart.png");
-    image1.width = "100px";
-    image1.height = "100px";
-    image2 = new BABYLON.GUI.Image("heart2", "./media/heart.png");
-    image2.width = "100px";
-    image2.height = "100px";
-    image3 = new BABYLON.GUI.Image("heart3", "./media/heart.png");
-    image3.width = "100px";
-    image3.height = "100px";
-    grid.addControl(image1, 0, 0);
-    grid.addControl(image2, 0, 1);
-    grid.addControl(image3, 0, 2);
-    //grid.removeControl(image3); //Remove last Heart
+    for(let i = 0; i<6; i++)
+    {
+        let img = new BABYLON.GUI.Image("heart", "./media/heart.png");
+        img.width = "50px";
+        img.height = "50px";
+        grid.addControl(img, 0, i);
+        healthImageList.push(img);
+    }
+
+    levelText = new BABYLON.GUI.TextBlock();
+    levelText.text = "Level 1";
+    levelText.color = "white";
+    levelText.fontSize = 32;
+    levelText.fontFamily = "pixel";
+    levelText.top = "50px";
+    levelText.left = "-35%";
+    advancedTexture.addControl(levelText);
+    
 
     deathUI = new BABYLON.GUI.Rectangle();
     deathUI.thickness = 0;
@@ -208,12 +215,14 @@ function createGUI()
     deadText.text = "You're dead !";
     deadText.color = "red";
     deadText.fontSize = 128;
+    deadText.fontFamily = "pixel";
     deathUI.addControl(deadText);
 
     reviveText = new BABYLON.GUI.TextBlock();
     reviveText.text = "press r to restart"
     reviveText.color = "white";
     reviveText.fontSize = 48;
+    reviveText.fontFamily = "pixel";
     reviveText.top = "10%";
     deathUI.addControl(reviveText);
     advancedTexture.addControl(deathUI);
@@ -226,12 +235,14 @@ function createGUI()
     finishLevelText.text = "Boss defeated !";
     finishLevelText.color = "orange";
     finishLevelText.fontSize = 100;
+    finishLevelText.fontFamily = "pixel";
     finishLevelPanel.addControl(finishLevelText);
 
     var goToNextLevelText = new BABYLON.GUI.TextBlock();
     goToNextLevelText.text = "press enter to go to the next level";
     goToNextLevelText.color = "white";
     goToNextLevelText.fontSize = 48;
+    goToNextLevelText.fontFamily = "pixel";
     goToNextLevelText.top = "10%";
     finishLevelPanel.addControl(goToNextLevelText);
 
@@ -241,16 +252,12 @@ function createGUI()
 // call to update player hearth
 function updateHealthUI()
 {
-    grid.removeControl(image1);
-    grid.removeControl(image2);
-    grid.removeControl(image3);
+    healthImageList.forEach(h => { h.alpha = 0;});
 
-    if(playerHealth > 0)
-        grid.addControl(image1, 0, 0);
-    if(playerHealth > 2)
-        grid.addControl(image2, 0, 1);
-    if(playerHealth > 4)
-        grid.addControl(image3, 0, 2);
+    for(let i = 0; i<playerHealth;i++)
+    {
+        healthImageList[i].alpha = 1;
+    }
 }
 
 function updateProjectiles(projectiles, targets){
