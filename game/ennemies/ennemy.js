@@ -44,6 +44,21 @@ class ennemy
         {
             this.dead = true;
             this.gameobject.isVisible = false;
+            let drop;
+            let randomDrop = Math.random();
+
+            if(randomDrop < 0.4)
+            {
+                randomDrop = Math.random();
+                if(randomDrop < 0.25)
+                    drop = new cristal(this.gameobject.position.x, this.gameobject.position.y);
+                else if(randomDrop < 0.50)
+                    drop = new degat(this.gameobject.position.x, this.gameobject.position.y);
+                else if(randomDrop < 0.75)
+                    drop = new vitesse(this.gameobject.position.x, this.gameobject.position.y);
+                else
+                    drop = new vitesseAttaque(this.gameobject.position.x, this.gameobject.position.y);
+            }
 
             let drop = new boostDegat(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
