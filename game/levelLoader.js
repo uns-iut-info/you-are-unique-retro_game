@@ -230,6 +230,7 @@ function loadnewlevel(level)
                 let slimeGreen = "./media/slimeVert.png";
                 let krok = "./media/kroctor.png";
                 let fire_spirit = "./media/fire_spirit.png";
+                let oeuil = "./media/oeuil.png";
                 if(levelCount < 2)
                 {
                     if(Math.random() < 0.2)
@@ -244,10 +245,14 @@ function loadnewlevel(level)
                 }
                 else
                 {
-                    if(Math.random() < 0.4)
+                    var rdm = Math.random()
+                    if(rdm > 0.6)
                         levelMobs.push(new mob(pos.x, pos.y, krok));
-                    else 
+                    else if (rdm > 0.3 && rdm < 0.6)
                         levelMobs.push(new fireSpirit(pos.x, pos.y, fire_spirit));
+                    else
+                        levelMobs.push(new eye(pos.x, pos.y, oeuil));
+
                 }
                 
                 
