@@ -18,6 +18,8 @@ flèches directionnelles | tir directionnel
 
 le jeu est disponible sur ce lien : https://dakharr.itch.io/retro-roguelike-game?secret=AQEH39Llzkp8myGTPrrs4OS3A
 
+Pour lancer le jeu en local il faut installer npm et node.js puis executer le script Windows_NPM_INSTALL.bat pour installer les dépendances et Windows_START.bat pour lancer le serveur. Enfin sur votre navigateur localhost.
+
 # La vidéo
 
 Une vidéo de présentation du jeu est disponible ...
