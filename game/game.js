@@ -185,4 +185,11 @@ function nextLevel()
         currentMusic = music_cave;
         currentMusic.play();
     }
+    if(levelCount > 4){
+        playerGender = 1;
+        playerTexture = "./media/magicienne.png";
+        player.material.diffuseTexture = new BABYLON.Texture(playerTexture, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+        player.material.diffuseTexture.hasAlpha = true;
+        wonGamePanel.alpha = 0;
+    }
 }

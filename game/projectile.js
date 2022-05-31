@@ -1,7 +1,7 @@
 class projectile
 {
     //optimise...
-    constructor(posx, posy, dir)
+    constructor(posx, posy, dir, color=playerGender?BABYLON.Color3.Purple():BABYLON.Color3.Teal())
     {
         this.posx = posx;
         this.posy = posy;
@@ -17,7 +17,7 @@ class projectile
 
         var newmat = new BABYLON.StandardMaterial("noLight", scene);
         newmat.disableLighting = true;
-        newmat.emissiveColor = BABYLON.Color3.White();
+        newmat.emissiveColor = color;
         newmat.diffuseTexture = new BABYLON.Texture("./media/magic.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
         newmat.diffuseTexture.hasAlpha = true;
         if(typeof dir == "number"){

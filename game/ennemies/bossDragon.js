@@ -20,7 +20,7 @@ class bossDragon extends boss
         let speed = engine.getDeltaTime()*2;
 
         if(Date.now() > this.bossFireTimer){
-            this.projectiles.push(new guidedProjectile(this.gameobject.position.x, this.gameobject.position.y, dir, player.position.x, player.position.y));
+            this.projectiles.push(new guidedProjectile(this.gameobject.position.x, this.gameobject.position.y, dir, BABYLON.Color3.Red(), player.position.x, player.position.y));
             this.bossFireTimer = Date.now() + this.attackSpeed;
         }
         updateProjectiles(this.projectiles, [player]);
