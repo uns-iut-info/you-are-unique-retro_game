@@ -58,8 +58,10 @@ class ennemy
                     drop = new boostVitesse(this.gameobject.position.x, this.gameobject.position.y);
                 else
                     drop = new boostVitesseAttaque(this.gameobject.position.x, this.gameobject.position.y);
+
+                createCollectibles(drop);
             }
-            createCollectibles(drop);
+            
             this.setActive(false);
         }   
     }
