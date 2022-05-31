@@ -16,7 +16,7 @@ class boss extends ennemy
         this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.3);
         this.gameobject.ellipsoid = new BABYLON.Vector3(0.8, 0.8, 0.8);  
 
-        this.projectiles = new Array();
+        //this.projectiles = new Array();
         this.bossFireTimer = Date.now();
         this.attackSpeed = 500;
     }
@@ -72,6 +72,7 @@ class boss extends ennemy
             this.gameobject.isVisible = false;
 
             this.projectiles.forEach(elem => elem.destroy());
+            this.projectiles = new Array();
 
             let drop = new cristal(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
@@ -84,7 +85,6 @@ class boss extends ennemy
 
     destroy()
     {
-        this.projectiles.forEach(elem => elem.destroy());
         super.destroy();
     }
 

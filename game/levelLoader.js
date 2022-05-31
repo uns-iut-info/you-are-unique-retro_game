@@ -355,7 +355,7 @@ function enableRoom(levelData, enabled)
     levelData['tiles'].forEach(element => element.setEnabled(enabled));
     levelData['doors'].forEach(element => element[1].setEnabled(enabled));
     levelData['entities'].forEach(element => element.setEnabled(enabled));
-    levelData['mobs'].forEach(element => element.gameobject.setEnabled(enabled));
+    levelData['mobs'].forEach(element => element.setActive(enabled));
 }
 
 function clearDungeon(dj)
