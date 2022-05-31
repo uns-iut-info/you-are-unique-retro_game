@@ -43,7 +43,7 @@ class ennemy
             this.dead = true;
             this.gameobject.isVisible = false;
 
-            let drop = new collectible(this.gameobject.position.x, this.gameobject.position.y);
+            let drop = new coeur(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
         }   
     }

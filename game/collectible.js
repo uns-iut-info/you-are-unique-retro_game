@@ -5,15 +5,7 @@ class collectible
     {
         this.collected = false;
         this.gameobject = BABYLON.MeshBuilder.CreatePlane("collectible", {width:0.5, height:0.5}, scene);
-        this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.2);
-
-        var newmat = new BABYLON.StandardMaterial("noLight", scene);
-        newmat.disableLighting = true;
-        newmat.emissiveColor = BABYLON.Color3.White();
-        newmat.diffuseTexture = new BABYLON.Texture("./media/coin.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-        newmat.diffuseTexture.hasAlpha = true;
-        this.gameobject.material = newmat;
-        
+        this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.2);       
         this.coin_sound = new BABYLON.Sound("coin_sound", "./media/rupee_sound.mp3", scene);
     }
 
@@ -28,10 +20,8 @@ class collectible
         {
             //player pickup item
             //play a sound
-            this.coin_sound.play();
-            console.log("pickup collectible!");
-            this.collected = true;
-            this.gameobject.setEnabled(false);
+            this.pickedUp(player);
+
         }
     }
 
@@ -39,6 +29,14 @@ class collectible
     {
         this.gameobject.dispose();
         this.coin_sound.dispose();
+    }
+
+    pickedUp(player)
+    {
+        this.coin_sound.play();
+        console.log("pickup collectible!");
+        this.collected = true;
+        this.gameobject.setEnabled(false);
     }
 }
 
@@ -64,5 +62,6 @@ function disableCollectibles()
 {
     dj[currentdjRoom]["collectibles"].forEach(element => element.gameobject.setEnabled(false));
 }
+
 
 
