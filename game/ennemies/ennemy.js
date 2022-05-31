@@ -18,6 +18,7 @@ class ennemy
         newmat.diffuseTexture = new BABYLON.Texture(spriteName, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
         newmat.diffuseTexture.hasAlpha = true;
         this.gameobject.material = newmat;
+        this.projectiles = new Array();
 
     }
 
@@ -43,13 +44,22 @@ class ennemy
             this.dead = true;
             this.gameobject.isVisible = false;
 
-            let drop = new coeur(this.gameobject.position.x, this.gameobject.position.y);
+            let drop = new boostDegat(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
         }   
     }
 
     destroy()
     {
+        this.projectiles.forEach(p => p.destroy());
+        this.projectiles = new Array();
         this.gameobject.dispose();
+    }
+
+    setActive(active)
+    {
+        this.gameobject.setEnabled(active);
+        this.projectiles.forEach(p => p.destroy());
+        this.projectiles = new Array();
     }
 }

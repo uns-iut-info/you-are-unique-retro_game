@@ -14,6 +14,9 @@ var levelText;
 var deadText;
 var reviveText;
 var deathUI;
+var degatPlayer;
+var boostVitesseAttaqueOn;
+var speed; 
 
 var finishLevelPanel;
 
@@ -30,6 +33,9 @@ function createPlayer()
     //player.material.diffuseTexture = new BABYLON.Texture("./media/player_icon2.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     player.material.diffuseTexture = new BABYLON.Texture("./media/magicien.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     player.material.diffuseTexture.hasAlpha = true;
+    degatPlayer=1;
+    boostVitesseAttaqueOn=0;
+    speed = 0.0075;
 }
 
 function resetPlayer()
@@ -37,6 +43,10 @@ function resetPlayer()
     player.position = new BABYLON.Vector3(0, 0, -0.3);
     playerHealth = playerMaxHealth;
     playerDead = false;
+    clearPlayerProj();
+    degatPlayer=1;
+    speed = 0.0075;
+    fireDelay = 200;
 
     deathUI.alpha = 0;
     updateHealthUI();
@@ -62,7 +72,6 @@ function updatePlayer(map)
     //movement
     var xdep=0;
     var ydep=0;
-    var speed = 0.0075
 
     if(map["q"]) xdep = -speed;
     if(map["d"]) xdep = speed;
@@ -125,9 +134,9 @@ function updatePlayer(map)
                     player.position.x = doorpos.x;
                     player.position.y = doorpos.y;
 
-                    if(currentDoor[0] == 'n') player.position.y += 1.5;
+                    if(currentDoor[0] == 'n') player.position.y -= 1.5;
                     if(currentDoor[0] == 'e') player.position.x -= 1.5;
-                    if(currentDoor[0] == 's') player.position.y -= 1.5;
+                    if(currentDoor[0] == 's') player.position.y += 1.5;
                     if(currentDoor[0] == 'o') player.position.x += 1.5;
         
                 }
@@ -135,8 +144,7 @@ function updatePlayer(map)
 
             //on room enter
             //clear projectiles
-            projs.forEach(elem => elem.destroy());
-            projs = Array();
+            clearPlayerProj();
 
             console.log("go to room" + currentdjRoom);
             
@@ -145,6 +153,12 @@ function updatePlayer(map)
             //ajouter des directions au portes pour pouvoir aider a la génération d'un niveau et pour placer le joueur devant la porte et pas dessus
         }
     }
+}
+
+function clearPlayerProj()
+{
+    projs.forEach(elem => elem.destroy());
+    projs = Array();
 }
 
 function playerTakeDamage(dmg)
@@ -297,9 +311,10 @@ function updateProjectiles(projectiles, targets){
         //         console.log("hit " + target.gameobject);
         //     }
         // }
+        // le player est  touché
         if (targets.length != 0 && targets[0]==player){
             let target = player;
-            if(!currentProjectile.used && currentProjectile.boxCollider.intersectsMesh(target, false))
+            if(!currentProjectile.used && BABYLON.Vector3.Distance(currentProjectile.gameobject.position, target.position)<1)
             {
                 currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Green();
                 playerTakeDamage(1);
@@ -308,14 +323,19 @@ function updateProjectiles(projectiles, targets){
                 currentProjectile.hide();
             }
         }
-        else{
+        else{ // cibles touchées par les projs du player
             for(let e=0;e<targets.length;e++)
             {
                 let target = targets[e];
                 if(!currentProjectile.used && !target.dead && BABYLON.Vector3.Distance(currentProjectile.gameobject.position, target.gameobject.position)<1)
                 {
-                    currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Green();
-                    target.takeDamage(1);
+                    if (degatPlayer>1){
+                        currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Red();
+                    }
+                    else{
+                        currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Green();
+                    }
+                    target.takeDamage(degatPlayer);
                     currentProjectile.used = true;
                     console.log("hit " + target.gameobject);
                 }
