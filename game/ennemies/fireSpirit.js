@@ -3,7 +3,7 @@ class fireSpirit extends ennemy
     constructor(posx, posy, spriteName)
     {
         super(posx, posy, spriteName);
-        this.health = 4;
+        this.health = 6;
         this.moveSpeed = 1; 
     }
 
@@ -29,8 +29,8 @@ class fireSpirit extends ennemy
     {
         super.takeDamage(dmg);
         if(!this.dead){
-            this.gameobject.scaling.x *= 0.8;
-            this.gameobject.scaling.y *= 0.8;
+            this.gameobject.scaling.x *= 0.9;
+            this.gameobject.scaling.y *= 0.9;
         }
     }
 }

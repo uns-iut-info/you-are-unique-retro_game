@@ -52,8 +52,8 @@ function resetPlayer()
     playerDead = false;
     clearPlayerProj();
     degatPlayer=1;
-    speed = 0.0075;
-    fireDelay = 200;
+    speed = 0.0035;
+    fireDelay = 500;
 
     deathUI.alpha = 0;
     updateHealthUI();
@@ -73,13 +73,17 @@ function updatePlayer(map)
 
     if(djBossDefeat && map["Enter"])
     {
-        if(levelCount >= 4){
+        if(levelCount >= 4 && !playerGender){
+            restart();
             playerGender = 1;
             playerTexture = "./media/magicienne.png";
             player.material.diffuseTexture = new BABYLON.Texture(playerTexture, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
             player.material.diffuseTexture.hasAlpha = true;
             wonGamePanel.alpha = 0;
-            restart();
+            degatPlayer=2;
+            speed = 0.0055;
+            fireDelay = 750;
+            
         } else {
             nextLevel();
         }

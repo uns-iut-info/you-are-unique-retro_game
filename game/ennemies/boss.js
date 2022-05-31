@@ -59,7 +59,7 @@ class boss extends ennemy
 
             djBossDefeat = true;
             
-            if(levelCount >= 4){
+            if(levelCount >= 4 && !playerGender){
                 wonGamePanel.alpha = 1;
             } else {
                 finishLevelPanel.alpha = 1;
