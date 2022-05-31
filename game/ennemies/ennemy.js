@@ -45,8 +45,7 @@ class ennemy
 
             let drop = new collectible(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
-        }
-            
+        }   
     }
 
     destroy()
@@ -58,7 +57,12 @@ class ennemy
     {
         let spriteName;
         if(levelCount < 2)
-            spriteName = "./media/slimeRouge.png";
+        {
+            if(Math.random() > 0.4)
+                spriteName = "./media/slimeRouge.png";
+            else
+                spriteName = "./media/slimeVert.png";
+        }
         else
             spriteName = "./media/kroctor.png";
 
