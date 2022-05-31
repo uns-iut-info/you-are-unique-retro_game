@@ -18,7 +18,7 @@ class boss extends ennemy
 
         //this.projectiles = new Array();
         this.bossFireTimer = Date.now();
-        this.attackSpeed = 500;
+        this.attackSpeed = 700;
     }
 
     update(player) 
