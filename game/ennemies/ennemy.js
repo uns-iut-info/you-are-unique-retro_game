@@ -10,18 +10,18 @@ class ennemy
         this.attackRange = 0.5;
         this.gameobject = BABYLON.MeshBuilder.CreatePlane("enemy", {width:1, height:1}, scene);
         this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.3);
-        this.gameobject.ellipsoid = new BABYLON.Vector3(0.4, 0.4, 0.4);  
+        this.gameobject.ellipsoid = new BABYLON.Vector3(0.4, 0.4, 0.4);
 
         var newmat = new BABYLON.StandardMaterial("noLight", scene);
         newmat.disableLighting = true;
         newmat.emissiveColor = BABYLON.Color3.White();
-        newmat.diffuseTexture = new BABYLON.Texture("./media/kroctor.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+        newmat.diffuseTexture = new BABYLON.Texture(this.getEnemySpriteName(), scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
         newmat.diffuseTexture.hasAlpha = true;
         this.gameobject.material = newmat;
 
     }
 
-    update(player) 
+    update(player)
     {
         if(this.dead)
             return;
@@ -52,5 +52,16 @@ class ennemy
     destroy()
     {
         this.gameobject.dispose();
+    }
+
+    getEnemySpriteName()
+    {
+        let spriteName;
+        if(levelCount < 2)
+            spriteName = "./media/slimeRouge.png";
+        else
+            spriteName = "./media/kroctor.png";
+
+        return spriteName;
     }
 }
