@@ -44,7 +44,7 @@ class ennemy
             this.dead = true;
             this.gameobject.isVisible = false;
 
-            let drop = new coeur(this.gameobject.position.x, this.gameobject.position.y);
+            let drop = new boostDegat(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
         }   
     }
