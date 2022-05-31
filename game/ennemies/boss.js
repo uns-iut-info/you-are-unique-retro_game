@@ -73,7 +73,7 @@ class boss extends ennemy
 
             this.projectiles.forEach(elem => elem.destroy());
 
-            let drop = new cristal(this.gameobject.position.x, this.gameobject.position.y);
+            let drop = new coeur(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
 
             djBossDefeat = true;
