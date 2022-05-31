@@ -19,7 +19,7 @@ class eye extends ennemy
         dir = dir.scale(0.001);
 
         if(Date.now() > this.bossFireTimer){
-            this.projectiles.push(new guidedProjectile(this.gameobject.position.x, this.gameobject.position.y, dir, player.position.x, player.position.y));
+            this.projectiles.push(new guidedProjectile(this.gameobject.position.x, this.gameobject.position.y, dir, BABYLON.Color3.Yellow(), player.position.x, player.position.y));
             this.bossFireTimer = Date.now() + this.attackSpeed;
         }
 

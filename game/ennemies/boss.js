@@ -30,7 +30,7 @@ class boss extends ennemy
         let dir = player.position.subtract(this.gameobject.position).normalize();
         dir = dir.scale(0.02);
         if(Date.now() > this.bossFireTimer){
-            this.projectiles.push(new projectile(this.gameobject.position.x, this.gameobject.position.y, 2));
+            this.projectiles.push(new projectile(this.gameobject.position.x, this.gameobject.position.y, 2, BABYLON.Color3.Blue()));
             this.bossFireTimer = Date.now() + this.attackSpeed;
         }
 

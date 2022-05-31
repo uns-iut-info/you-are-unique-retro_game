@@ -1,8 +1,8 @@
 class guidedProjectile extends projectile
 {
-    constructor(posx, posy, dir, playerX, playerY)
+    constructor(posx, posy, dir, color=BABYLON.Color3.Teal(), playerX, playerY)
     {
-        super(posx, posy, dir);
+        super(posx, posy, dir, color);
         var angle = BABYLON.Angle.BetweenTwoPoints(new BABYLON.Vector2(posx, posy), new BABYLON.Vector2(playerX, playerY)).radians();
         this.gameobject.material.diffuseTexture.wAng = -angle;
     }
