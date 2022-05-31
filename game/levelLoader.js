@@ -258,7 +258,7 @@ function loadnewlevel(level)
                 let kroctor = "./media/kroctor.png";
                 let fire_spirit = "./media/fire_spirit.png";
                 let oeuil = "./media/oeuil.png";
-                if(levelCount < 2)
+                if(levelCount < 3)
                 {
                     if(Math.random() < 0.2)
                         levelMobs.push(new blob(pos.x, pos.y, poro));

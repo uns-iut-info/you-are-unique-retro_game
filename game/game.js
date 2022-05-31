@@ -61,7 +61,7 @@ var createScene = function () {
     createPlayer(); //initialize player related stuff
 
     // ------ audio -------
-    BABYLON.Engine.audioEngine.setGlobalVolume(0.1);
+    BABYLON.Engine.audioEngine.setGlobalVolume(0.05);
     music_castle = new BABYLON.Sound("Music", "./media/castle_music.mp3", scene, null, {loop: true, autoplay: true});
     music_cave = new BABYLON.Sound("Music2", "./media/lvl2_music.mp3", scene, null, {loop: true});
 
@@ -179,7 +179,7 @@ function nextLevel()
     //player
     player.position = new BABYLON.Vector3(0, 0, -0.3);
 
-    if(levelCount == 2)
+    if(levelCount < 3)
     {
         currentMusic.stop();
         currentMusic = music_cave;
