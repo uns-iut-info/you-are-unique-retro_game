@@ -18,6 +18,7 @@ class ennemy
         newmat.diffuseTexture = new BABYLON.Texture(spriteName, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
         newmat.diffuseTexture.hasAlpha = true;
         this.gameobject.material = newmat;
+        this.projectiles = new Array();
 
     }
 
@@ -50,6 +51,15 @@ class ennemy
 
     destroy()
     {
+        this.projectiles.forEach(p => p.destroy());
+        this.projectiles = new Array();
         this.gameobject.dispose();
+    }
+
+    setActive(active)
+    {
+        this.gameobject.setEnabled(active);
+        this.projectiles.forEach(p => p.destroy());
+        this.projectiles = new Array();
     }
 }
