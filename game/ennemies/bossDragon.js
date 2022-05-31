@@ -4,9 +4,10 @@ class bossDragon extends boss
     {
         super(posx, posy, spriteName);
         this.health = 50;
-        this.attackSpeed = 1000;
+        this.attackSpeed = 500;
         this.attackPatern = 0;
         this.attackRange = 1;
+        this.moveSpeed = 3;
         this.damage = 3;
     }
 
@@ -17,7 +18,7 @@ class bossDragon extends boss
 
         let dir = player.position.subtract(this.gameobject.position).normalize();
         dir = dir.scale(0.001);
-        let speed = engine.getDeltaTime();
+        let deltatime = engine.getDeltaTime();
 
         if(Date.now() > this.bossFireTimer){
             this.projectiles.push(new guidedProjectile(this.gameobject.position.x, this.gameobject.position.y, dir, BABYLON.Color3.Red(), player.position.x, player.position.y));
@@ -25,6 +26,6 @@ class bossDragon extends boss
         }
         updateProjectiles(this.projectiles, [player]);
 
-        this.gameobject.moveWithCollisions(new BABYLON.Vector3(dir.x*speed*2, dir.y*speed*2, 0))
+        this.gameobject.moveWithCollisions(new BABYLON.Vector3(dir.x*deltatime*this.moveSpeed, dir.y*deltatime*this.moveSpeed, 0))
     }
 }
