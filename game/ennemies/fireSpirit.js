@@ -12,8 +12,8 @@ class fireSpirit extends ennemy
             return;
         let deltatime = engine.getDeltaTime();
         let dir = player.position.subtract(this.gameobject.position).normalize();
-        dir = dir.scale(0.01);
-        this.gameobject.moveWithCollisions(new BABYLON.Vector3(0, dir.y*deltatime, 0));
+        dir = dir.scale(0.001);
+        this.gameobject.moveWithCollisions(new BABYLON.Vector3(dir.x*deltatime, dir.y*deltatime, 0))
 
         if(Date.now() > this.attackTimer && BABYLON.Vector3.Distance(player.position, this.gameobject.position) < this.attackRange)
         {
@@ -27,6 +27,9 @@ class fireSpirit extends ennemy
     takeDamage(dmg)
     {
         super.takeDamage(dmg);
-        this.gameobject.width *= (this.health*2)/10;
+        if(!this.dead){
+            this.gameobject.scaling.x *= 0.8;
+            this.gameobject.scaling.y *= 0.8;
+        }
     }
 }
