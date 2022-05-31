@@ -7,7 +7,7 @@ class eye extends ennemy
         this.damage = 1;  
         this.projectiles = new Array();
         this.bossFireTimer = Date.now();
-        this.attackSpeed = 2000; 
+        this.attackSpeed = 1000; 
     }
 
     update(player) 
