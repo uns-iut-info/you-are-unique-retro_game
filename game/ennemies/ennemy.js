@@ -53,11 +53,11 @@ class ennemy
                 if(randomDrop < 0.25)
                     drop = new cristal(this.gameobject.position.x, this.gameobject.position.y);
                 else if(randomDrop < 0.50)
-                    drop = new degat(this.gameobject.position.x, this.gameobject.position.y);
+                    drop = new boostDegat(this.gameobject.position.x, this.gameobject.position.y);
                 else if(randomDrop < 0.75)
-                    drop = new vitesse(this.gameobject.position.x, this.gameobject.position.y);
+                    drop = new boostVitesse(this.gameobject.position.x, this.gameobject.position.y);
                 else
-                    drop = new vitesseAttaque(this.gameobject.position.x, this.gameobject.position.y);
+                    drop = new boostVitesseAttaque(this.gameobject.position.x, this.gameobject.position.y);
             }
             createCollectibles(drop);
             this.setActive(false);
