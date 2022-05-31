@@ -7,7 +7,7 @@ class bossDragon extends boss
         this.attackSpeed = 1000;
         this.attackPatern = 0;
         this.attackRange = 1;
-        this.damage = 1;
+        this.damage = 3;
     }
 
     update()

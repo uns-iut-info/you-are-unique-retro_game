@@ -3,7 +3,7 @@ class eye extends ennemy
     constructor(posx, posy, spriteName)
     {
         super(posx, posy, spriteName);   
-        this.health = 1;
+        this.health = 2;
         this.damage = 1;  
         this.projectiles = new Array();
         this.bossFireTimer = Date.now();

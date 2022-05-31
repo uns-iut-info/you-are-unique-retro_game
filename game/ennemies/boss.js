@@ -3,8 +3,8 @@ class boss extends ennemy
     constructor(posx, posy, spriteName)
     {
         super(posx,posy, spriteName);
-        this.health = 15;
-        this.damage = 1;
+        this.health = 25;
+        this.damage = 2;
         this.gameobject.dispose();
         this.gameobject = BABYLON.MeshBuilder.CreatePlane("enemy", {width:2, height:2}, scene);
         var newmat = new BABYLON.StandardMaterial("noLight", scene);
