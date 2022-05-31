@@ -59,8 +59,6 @@ class ennemy
                 else
                     drop = new vitesseAttaque(this.gameobject.position.x, this.gameobject.position.y);
             }
-
-            let drop = new boostDegat(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
             this.setActive(false);
         }   
