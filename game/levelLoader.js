@@ -335,7 +335,7 @@ function findRoomWithDir(dir)
 
     var levelPool;
 
-    if(levelCount < 2)
+    if(levelCount < 3)
         levelPool = llevel;
     else
         levelPool = llevel2;
@@ -353,7 +353,7 @@ function findRoomWithDir(dir)
 
 function generateDungeon()
 {
-    var dungeonRoomsMin = 4;
+    var dungeonRoomsMin = 5;
     var dungeonRoomsMax = 8;
     var dungeonRoomsCount = Math.floor(Math.random() * (dungeonRoomsMax - dungeonRoomsMin + 1) + dungeonRoomsMin);
 
@@ -363,7 +363,7 @@ function generateDungeon()
 
     var startlevelData;
 
-    if(levelCount < 2)
+    if(levelCount < 3)
         startlevelData = loadnewlevel(lStarter[randomStarter]);
     else
         startlevelData = loadnewlevel(l2s[randomStarter]);
@@ -401,7 +401,7 @@ function generateDungeon()
     //boss room
     var endlevelData;
     
-    if(levelCount < 2)
+    if(levelCount < 3)
     {
         endlevelData = loadnewlevel(bossRoom);
         endlevelData["mobs"].push(new boss(0,3,"./media/boss_1.png"));
