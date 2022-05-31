@@ -228,7 +228,7 @@ function loadnewlevel(level)
                 let poro = "./media/poro.png";
                 let slimeRed = "./media/slimeRouge.png";
                 let slimeGreen = "./media/slimeVert.png";
-                let krok = "./media/kroctor.png";
+                let kroctor = "./media/kroctor.png";
                 let fire_spirit = "./media/fire_spirit.png";
                 let oeuil = "./media/oeuil.png";
                 if(levelCount < 2)
@@ -247,7 +247,7 @@ function loadnewlevel(level)
                 {
                     var rdm = Math.random()
                     if(rdm > 0.6)
-                        levelMobs.push(new mob(pos.x, pos.y, krok));
+                        levelMobs.push(new krok(pos.x, pos.y, kroctor));
                     else if (rdm > 0.3 && rdm < 0.6)
                         levelMobs.push(new fireSpirit(pos.x, pos.y, fire_spirit));
                     else

@@ -7,7 +7,7 @@ var playerDead = false;
 var projs = new Array();
 
 var fireTimer = Date.now();
-var fireDelay = 200;
+var fireDelay = 500;
 
 var grid;
 var healthImageList = Array();
@@ -73,7 +73,12 @@ function updatePlayer(map)
 
     if(djBossDefeat && map["Enter"])
     {
-        if(nextLevel >= 4){
+        if(levelCount >= 4){
+            playerGender = 1;
+            playerTexture = "./media/magicienne.png";
+            player.material.diffuseTexture = new BABYLON.Texture(playerTexture, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+            player.material.diffuseTexture.hasAlpha = true;
+            wonGamePanel.alpha = 0;
             restart();
         } else {
             nextLevel();
