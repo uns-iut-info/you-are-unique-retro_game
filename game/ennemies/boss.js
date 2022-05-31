@@ -58,7 +58,12 @@ class boss extends ennemy
             createCollectibles(drop);
 
             djBossDefeat = true;
-            finishLevelPanel.alpha = 1;
+            
+            if(levelCount >= 4){
+                wonGamePanel.alpha = 1;
+            } else {
+                finishLevelPanel.alpha = 1;
+            }
         }
             
     }

@@ -1,6 +1,7 @@
 var player;
 
 var playerMaxHealth = 6;
+var playerGender = 0; //0 Male - 1 Female
 var playerHealth = playerMaxHealth;
 var playerDead = false;
 var projs = new Array();
@@ -12,6 +13,7 @@ var grid;
 var healthImageList = Array();
 var levelText;
 var deadText;
+var wonGameText;
 var reviveText;
 var deathUI;
 var degatPlayer;
@@ -31,7 +33,12 @@ function createPlayer()
     player.material.emissiveColor = BABYLON.Color3.White();
     //player.material.diffuseTexture = new BABYLON.Texture("https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/e/e5/Character_Isaac_appearance.png", scene);
     //player.material.diffuseTexture = new BABYLON.Texture("./media/player_icon2.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
-    player.material.diffuseTexture = new BABYLON.Texture("./media/magicien.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+    var playerTexture;
+    if(playerGender)
+        playerTexture = "./media/magicienne.png";
+    else
+        playerTexture = "./media/magicien.png";
+    player.material.diffuseTexture = new BABYLON.Texture(playerTexture, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
     player.material.diffuseTexture.hasAlpha = true;
     degatPlayer=1;
     boostVitesseAttaqueOn=0;
@@ -66,7 +73,11 @@ function updatePlayer(map)
 
     if(djBossDefeat && map["Enter"])
     {
-        nextLevel();
+        if(nextLevel >= 4){
+            restart();
+        } else {
+            nextLevel();
+        }
     }
 
     //movement
@@ -270,7 +281,28 @@ function createGUI()
     goToNextLevelText.top = "10%";
     finishLevelPanel.addControl(goToNextLevelText);
 
-    advancedTexture.addControl(finishLevelPanel);
+    advancedTexture.addControl(finishLevelPanel);  
+    
+    wonGamePanel = new BABYLON.GUI.Rectangle();
+    wonGamePanel.thickness = 0;
+    wonGamePanel.alpha = 0;
+
+    wonGameText = new BABYLON.GUI.TextBlock();
+    wonGameText.text = "YOU WON !!!";
+    wonGameText.color = "red";
+    wonGameText.fontSize = 100;
+    wonGameText.fontFamily = "pixel";
+    wonGamePanel.addControl(wonGameText);
+
+    endGameText = new BABYLON.GUI.TextBlock();
+    endGameText.text = "press enter to end the game"
+    endGameText.color = "white";
+    endGameText.fontSize = 48;
+    endGameText.fontFamily = "pixel";
+    endGameText.top = "10%";
+    wonGamePanel.addControl(endGameText);
+
+    advancedTexture.addControl(wonGamePanel);
 }
 
 // call to update player hearth

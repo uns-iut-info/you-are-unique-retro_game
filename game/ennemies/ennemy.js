@@ -46,6 +46,7 @@ class ennemy
 
             let drop = new boostDegat(this.gameobject.position.x, this.gameobject.position.y);
             createCollectibles(drop);
+            this.setActive(false);
         }   
     }
 

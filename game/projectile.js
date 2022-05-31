@@ -1,7 +1,7 @@
 class projectile
 {
     //optimise...
-    constructor(posx, posy, dir, color=BABYLON.Color3.Teal())
+    constructor(posx, posy, dir, color=playerGender?BABYLON.Color3.Purple():BABYLON.Color3.Teal())
     {
         this.posx = posx;
         this.posy = posy;
