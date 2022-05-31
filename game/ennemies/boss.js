@@ -82,4 +82,10 @@ class boss extends ennemy
             
     }
 
+    destroy()
+    {
+        this.projectiles.forEach(elem => elem.destroy());
+        super.destroy();
+    }
+
 }

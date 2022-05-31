@@ -37,6 +37,7 @@ function resetPlayer()
     player.position = new BABYLON.Vector3(0, 0, -0.3);
     playerHealth = playerMaxHealth;
     playerDead = false;
+    clearPlayerProj();
 
     deathUI.alpha = 0;
     updateHealthUI();
@@ -135,8 +136,7 @@ function updatePlayer(map)
 
             //on room enter
             //clear projectiles
-            projs.forEach(elem => elem.destroy());
-            projs = Array();
+            clearPlayerProj();
 
             console.log("go to room" + currentdjRoom);
             
@@ -145,6 +145,12 @@ function updatePlayer(map)
             //ajouter des directions au portes pour pouvoir aider a la génération d'un niveau et pour placer le joueur devant la porte et pas dessus
         }
     }
+}
+
+function clearPlayerProj()
+{
+    projs.forEach(elem => elem.destroy());
+    projs = Array();
 }
 
 function playerTakeDamage(dmg)
