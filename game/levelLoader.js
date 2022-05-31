@@ -200,8 +200,30 @@ function loadnewlevel(level)
             if(tile == "8")
             {
                 //enemy spawn...
-                var monster = new mob(pos.x, pos.y);
-                levelMobs.push(monster);
+                //var monster = new mob(pos.x, pos.y);
+                let selection;
+                let poro = "./media/poro.png";
+                let slimeRed = "./media/slimeRouge.png";
+                let slimeGreen = "./media/slimeVert.png";
+                let krok = "./media/kroctor.png";
+                if(levelCount < 2)
+                {
+                    if(Math.random() < 0.2)
+                        levelMobs.push(new blob(pos.x, pos.y, poro));
+                    else
+                    {
+                        if(Math.random() < 0.4)
+                            levelMobs.push(new mob(pos.x, pos.y, slimeGreen));
+                        else
+                            levelMobs.push(new mob(pos.x, pos.y, slimeRed));
+                    }
+                }
+                else
+                {
+                    levelMobs.push(new mob(pos.x, pos.y, krok));
+                }
+                
+                
             }
         }
     }
@@ -307,7 +329,7 @@ function generateDungeon()
     //boss room
     var endlevelData = loadnewlevel(bossRoom);
     endlevelData['doors'][0][2] = -1;
-    endlevelData["mobs"].push(new boss(0,3));
+    endlevelData["mobs"].push(new boss(0,3,"./media/boss_1.png"));
     dungeonLayout.push(endlevelData);
 
     enableRoom(endlevelData, false);

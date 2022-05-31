@@ -1,8 +1,8 @@
 class mob extends ennemy
 {
-    constructor(posx, posy)
+    constructor(posx, posy, spriteName)
     {
-        super(posx, posy);      
+        super(posx, posy, spriteName);      
     }
 
     update(player) 
