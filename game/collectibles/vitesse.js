@@ -13,6 +13,6 @@ class boostVitesse extends collectible
 
     pickedUp(player){
         super.pickedUp();
-        speed += 0.0025;
+        speed += 0.0010;
     }
 }
