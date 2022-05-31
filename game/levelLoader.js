@@ -403,7 +403,7 @@ function generateDungeon()
     
     if(levelCount < 2)
     {
-        endlevelData = loadnewlevel(BossRoom);
+        endlevelData = loadnewlevel(bossRoom);
         endlevelData["mobs"].push(new boss(0,3,"./media/boss_1.png"));
     }
     else
