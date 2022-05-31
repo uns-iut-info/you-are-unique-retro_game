@@ -8,6 +8,7 @@ class ennemy
         this.attackSpeed = 1000;
         this.attackTimer = 0;
         this.attackRange = 0.5;
+        this.moveSpeed = 1; 
         this.gameobject = BABYLON.MeshBuilder.CreatePlane("enemy", {width:1, height:1}, scene);
         this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.3);
         this.gameobject.ellipsoid = new BABYLON.Vector3(0.4, 0.4, 0.4);

@@ -3,7 +3,8 @@ class krok extends mob
     constructor(posx, posy, spriteName)
     {
         super(posx, posy, spriteName);   
-        this.damage = 2;   
+        this.damage = 2;  
+        this.moveSpeed = 1.7; 
     }
 
 }
