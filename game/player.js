@@ -42,7 +42,7 @@ function createPlayer()
     player.material.diffuseTexture.hasAlpha = true;
     degatPlayer=1;
     boostVitesseAttaqueOn=0;
-    speed = 0.0075;
+    speed = 0.0035;
 }
 
 function resetPlayer()
