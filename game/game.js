@@ -179,7 +179,7 @@ function nextLevel()
     //player
     player.position = new BABYLON.Vector3(0, 0, -0.3);
 
-    if(levelCount > 3)
+    if(levelCount >= 3)
     {
         currentMusic.stop();
         currentMusic = music_cave;
