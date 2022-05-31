@@ -30,28 +30,8 @@ class boss extends ennemy
         let dir = player.position.subtract(this.gameobject.position).normalize();
         dir = dir.scale(0.02);
         if(Date.now() > this.bossFireTimer){
-            let randint = Math.floor(Math.random() * 2);
-            console.log(randint);
-            if (randint == 0){
-                if (dir.x>0){
-                    this.projectiles.push(new projectile(this.gameobject.position.x, this.gameobject.position.y, 1));
-                    this.bossFireTimer = Date.now() + this.attackSpeed;
-                }
-                else{
-                    this.projectiles.push(new projectile(this.gameobject.position.x, this.gameobject.position.y, 3));
-                    this.bossFireTimer = Date.now() + this.attackSpeed;
-                }
-            }
-            else{
-                if (dir.y>0){
-                    this.projectiles.push(new projectile(this.gameobject.position.x, this.gameobject.position.y, 0));
-                    this.bossFireTimer = Date.now() + this.attackSpeed;
-                }
-                else{
-                    this.projectiles.push(new projectile(this.gameobject.position.x, this.gameobject.position.y, 2));
-                    this.bossFireTimer = Date.now() + this.attackSpeed;
-                }
-            }
+            this.projectiles.push(new projectile(this.gameobject.position.x, this.gameobject.position.y, 2));
+            this.bossFireTimer = Date.now() + this.attackSpeed;
         }
 
         this.gameobject.moveWithCollisions(new BABYLON.Vector3(dir.x*deltatime, 0, 0));

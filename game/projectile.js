@@ -20,12 +20,14 @@ class projectile
         newmat.emissiveColor = BABYLON.Color3.White();
         newmat.diffuseTexture = new BABYLON.Texture("./media/magic.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
         newmat.diffuseTexture.hasAlpha = true;
-        if(this.dir == 0)
-            newmat.diffuseTexture.wAng = -Math.PI/2;
-        if(this.dir == 2)
-            newmat.diffuseTexture.wAng = Math.PI/2;
-        if(this.dir == 3)
-            newmat.diffuseTexture.wAng = Math.PI;
+        if(typeof dir == "number"){
+            if(this.dir == 0)
+                newmat.diffuseTexture.wAng = -Math.PI/2;
+            if(this.dir == 2)
+                newmat.diffuseTexture.wAng = Math.PI/2;
+            if(this.dir == 3)
+                newmat.diffuseTexture.wAng = Math.PI;
+        }
         this.gameobject.material = newmat;
     }
 
