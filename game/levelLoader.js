@@ -329,7 +329,10 @@ function generateDungeon()
     //boss room
     var endlevelData = loadnewlevel(bossRoom);
     endlevelData['doors'][0][2] = -1;
-    endlevelData["mobs"].push(new boss(0,3,"./media/boss_1.png"));
+    if(levelCount < 2)
+        endlevelData["mobs"].push(new boss(0,3,"./media/boss_1.png"));
+    else
+        endlevelData["mobs"].push(new bossDragon(0,3,"./media/boss_2.png"));
     dungeonLayout.push(endlevelData);
 
     enableRoom(endlevelData, false);
