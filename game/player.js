@@ -324,6 +324,7 @@ function updateProjectiles(projectiles, targets){
                     target.takeDamage(1);
                     currentProjectile.used = true;
                     console.log("hit " + target.gameobject);
+                    currentProjectile.hide();
                 }
             }
         }
