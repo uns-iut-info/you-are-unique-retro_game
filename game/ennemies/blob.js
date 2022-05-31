@@ -1,12 +1,11 @@
 class blob extends ennemy
 {
-    constructor(posx, posy)
+    constructor(posx, posy, spriteName)
     {
-        super(posx, posy);
-        this.gameobject.material.diffuseTexture = new BABYLON.Texture("../media/blob.png", scene);    
+        super(posx, posy, spriteName);
     }
 
-    update(player) 
+    update(player)
     {
         if(this.dead)
             return;
@@ -17,5 +16,4 @@ class blob extends ennemy
 
         super.update(player);
     }
-
 }

@@ -1,8 +1,8 @@
 class boss extends ennemy
 {
-    constructor(posx, posy)
+    constructor(posx, posy, spriteName)
     {
-        super(posx,posy);
+        super(posx,posy, spriteName);
         this.health = 15;
         this.damage = 1;
         this.gameobject.dispose();
@@ -10,7 +10,7 @@ class boss extends ennemy
         var newmat = new BABYLON.StandardMaterial("noLight", scene);
         newmat.disableLighting = true;
         newmat.emissiveColor = BABYLON.Color3.White();
-        newmat.diffuseTexture = new BABYLON.Texture("./media/boss_1.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);    
+        newmat.diffuseTexture = new BABYLON.Texture(spriteName, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);    
         newmat.diffuseTexture.hasAlpha = true;
         this.gameobject.material = newmat;
         this.gameobject.position = new BABYLON.Vector3(posx, posy, -0.3);
