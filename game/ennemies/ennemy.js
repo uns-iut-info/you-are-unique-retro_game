@@ -1,6 +1,6 @@
 class ennemy
 {
-    constructor(posx, posy)
+    constructor(posx, posy, spriteName)
     {
         this.dead = false; 
         this.health = 3;
@@ -15,7 +15,7 @@ class ennemy
         var newmat = new BABYLON.StandardMaterial("noLight", scene);
         newmat.disableLighting = true;
         newmat.emissiveColor = BABYLON.Color3.White();
-        newmat.diffuseTexture = new BABYLON.Texture(this.getEnemySpriteName(), scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+        newmat.diffuseTexture = new BABYLON.Texture(spriteName, scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
         newmat.diffuseTexture.hasAlpha = true;
         this.gameobject.material = newmat;
 
@@ -51,21 +51,5 @@ class ennemy
     destroy()
     {
         this.gameobject.dispose();
-    }
-
-    getEnemySpriteName()
-    {
-        let spriteName;
-        if(levelCount < 2)
-        {
-            if(Math.random() > 0.4)
-                spriteName = "./media/slimeRouge.png";
-            else
-                spriteName = "./media/slimeVert.png";
-        }
-        else
-            spriteName = "./media/kroctor.png";
-
-        return spriteName;
     }
 }
