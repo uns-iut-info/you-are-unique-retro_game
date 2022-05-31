@@ -162,6 +162,16 @@ function playerTakeDamage(dmg)
     updateHealthUI();
 }
 
+function playerRegen(val)
+{
+    if(playerHealth+val <= 6)
+    {
+        playerHealth += val;
+        console.log("player regen " + val + " hearts !");
+        updateHealthUI();
+    }
+}
+
 function hideProjectile(p)
 {
     p.hide();
@@ -302,7 +312,7 @@ function updateProjectiles(projectiles, targets){
             for(let e=0;e<targets.length;e++)
             {
                 let target = targets[e];
-                if(!currentProjectile.used && !target.dead && currentProjectile.boxCollider.intersectsMesh(target.gameobject, false))
+                if(!currentProjectile.used && !target.dead && BABYLON.Vector3.Distance(currentProjectile.gameobject.position, target.gameobject.position)<1)
                 {
                     currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Green();
                     target.takeDamage(1);
