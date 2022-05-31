@@ -126,9 +126,9 @@ function updatePlayer(map)
                     player.position.x = doorpos.x;
                     player.position.y = doorpos.y;
 
-                    if(currentDoor[0] == 'n') player.position.y += 1.5;
+                    if(currentDoor[0] == 'n') player.position.y -= 1.5;
                     if(currentDoor[0] == 'e') player.position.x -= 1.5;
-                    if(currentDoor[0] == 's') player.position.y -= 1.5;
+                    if(currentDoor[0] == 's') player.position.y += 1.5;
                     if(currentDoor[0] == 'o') player.position.x += 1.5;
         
                 }
