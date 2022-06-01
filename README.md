@@ -6,7 +6,7 @@ Here's the source code of the retro_roguelike_game made with babylonJS!
 
 # Synopsis
 
-Vous êtes un magicien en quête de pouvoir dans un donjon maudit. Augmenter votre force en récupérant les power-up laissez par les monstres afin d'occire le dragon.
+Vous êtes un magicien en quête de pouvoir dans un donjon maudit. Augmenter votre force en récupérant les power-up laissés par les monstres afin d'occire le dragon.
 
 Prenez garde ! Le donjon change de configuration à chaque nouvel essai le rendant **unique**.
 
