@@ -14,9 +14,9 @@ Une fois Niveau 4 atteint, vous débloquerez le mode infini+ ainsi le personnage
 
 # L'équipe
 
-Paul Laudien
-Nicolas Lanoux
-Joel Galigne
+- Paul Laudien
+- Nicolas Lanoux
+- Joel Galigne
 
 # Commandes Clavier
 
