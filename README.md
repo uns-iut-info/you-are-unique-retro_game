@@ -27,6 +27,8 @@ flèches directionnelles | tir directionnel
 
 # Commandes Manette
 
+Commande | Action
+--------- | ----------
 joystick gauche | déplacement
 joystick droit | tir directionnel
 
