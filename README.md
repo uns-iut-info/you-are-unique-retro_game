@@ -2,7 +2,7 @@
 
 ![retro_logo](itch/screen1.png)
 
-Here's the source code of the retro_roguelike_game made with babylonJS
+Here's the source code of the retro_roguelike_game made with babylonJS!
 
 # Synopsis
 
