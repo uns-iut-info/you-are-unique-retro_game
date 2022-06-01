@@ -40,7 +40,7 @@ Pour lancer le jeu en local il faut installer npm et node.js puis executer le sc
 
 # La vidéo
 
-Une vidéo de présentation du jeu est disponible ...
+Une vidéo de présentation du jeu est disponible [ici](https://youtu.be/lS7iS2G8shg)
 
 ## Détails techniques
 
