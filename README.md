@@ -1,4 +1,7 @@
 # retro_roguelike_game
+
+![retro_logo](itch/screen1.png)
+
 Here's the source code of the retro_roguelike_game made with babylonJS
 
 # Synopsis
@@ -15,18 +18,23 @@ Paul Laudien
 Nicolas Lanoux
 Joel Galigne
 
-# Commandes
+# Commandes Clavier
 
 Commande | Action
 --------- | ----------
 zqsd | déplacement
 flèches directionnelles | tir directionnel
 
+# Commandes Manette
+
+joystick gauche | déplacement
+joystick droit | tir directionnel
+
 # Le Jeu
 
-le jeu est disponible sur ce lien : https://dakharr.itch.io/retro-roguelike-game?secret=AQEH39Llzkp8myGTPrrs4OS3A
+Le jeu est disponible sur ce lien : https://dakharr.itch.io/retro-roguelike-game?secret=AQEH39Llzkp8myGTPrrs4OS3A
 
-Pour lancer le jeu en local il faut installer npm et node.js puis executer le script Windows_NPM_INSTALL.bat pour installer les dépendances et Windows_START.bat pour lancer le serveur. Enfin sur votre navigateur localhost.
+Pour lancer le jeu en local il faut installer npm et node.js puis executer le script Windows_NPM_INSTALL.bat pour installer les dépendances et Windows_START.bat pour lancer le serveur. Enfin sur votre navigateur cherchez localhost.
 
 # La vidéo
 
