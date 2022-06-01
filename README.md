@@ -1,6 +1,14 @@
 # retro_roguelike_game
 Here's the source code of the retro_roguelike_game made with babylonJS
 
+# Synopsis
+
+Vous êtes un magicien en quête de pouvoir dans un donjon maudit. Augmenter votre force en récupérant les power-up laissez par les monstres afin d'occire le dragon.
+
+Prenez garde ! Le donjon change de configuration à chaque nouvel essai le rendant **unique**.
+
+Une fois Niveau 4 atteint, vous débloquerez le mode infini+ ainsi le personnage de la magicienne.
+
 # L'équipe
 
 Paul Laudien
