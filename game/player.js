@@ -336,7 +336,8 @@ function updateProjectiles(projectiles, targets){
         let walls = dj[currentdjRoom]["walls"];
         for(let j=0;j<walls.length;j++)
         {
-            if(currentProjectile.boxCollider.intersectsMesh(walls[j], false))
+            //if(currentProjectile.boxCollider.intersectsMesh(walls[j], false))
+            if(BABYLON.Vector3.Distance(currentProjectile.gameobject.position, walls[j].position)<0.7)
             {
                 currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Red();
                 hideProjectile(currentProjectile); 
@@ -355,7 +356,7 @@ function updateProjectiles(projectiles, targets){
         // le player est  touché
         if (targets.length != 0 && targets[0]==player){
             let target = player;
-            if(!currentProjectile.used && BABYLON.Vector3.Distance(currentProjectile.gameobject.position, target.position)<1)
+            if(!currentProjectile.used && BABYLON.Vector3.Distance(currentProjectile.gameobject.position, target.position)<0.7)
             {
                 currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Green();
                 playerTakeDamage(1);
@@ -368,7 +369,7 @@ function updateProjectiles(projectiles, targets){
             for(let e=0;e<targets.length;e++)
             {
                 let target = targets[e];
-                if(!currentProjectile.used && !target.dead && BABYLON.Vector3.Distance(currentProjectile.gameobject.position, target.gameobject.position)<1)
+                if(!currentProjectile.used && !target.dead && BABYLON.Vector3.Distance(currentProjectile.gameobject.position, target.gameobject.position)<0.7)
                 {
                     if (degatPlayer>1){
                         currentProjectile.gameobject.material.emissiveColor = new BABYLON.Color3.Red();
